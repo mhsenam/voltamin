@@ -70,7 +70,7 @@ export const Testimonials = () => {
             What Our <span className="text-primary">Customers Say</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Don't just take our word for it - hear from our satisfied clients who have experienced our exceptional service.
+            Don&apos;t just take our word for it - hear from our satisfied clients who have experienced our exceptional service.
           </p>
           <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mx-auto mt-4" />
         </motion.div>
@@ -104,7 +104,7 @@ export const Testimonials = () => {
 
                   {/* Review Text */}
                   <p className="text-foreground/80 text-sm leading-relaxed mb-4 flex-grow line-clamp-4">
-                    "{testimonial.text}"
+                    &quot;{testimonial.text}&quot;
                   </p>
 
                   {/* Service Details */}
