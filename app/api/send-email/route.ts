@@ -18,8 +18,8 @@ export async function POST(request: NextRequest) {
 
     // Email to you (sam@voltaminelectric.com)
     const adminEmailResponse = await resend.emails.send({
-      from: "Contact Form <onboarding@resend.dev>",
-      to: "mohsenamini1081@gmail.com",
+      from: "VOLTAMIN ELECTRIC <noreply@voltaminelectric.com>",
+      to: "sam@voltaminelectric.com",
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <!DOCTYPE html>
@@ -109,7 +109,7 @@ export async function POST(request: NextRequest) {
     // Confirmation email to user
     try {
       await resend.emails.send({
-        from: "VOLTAMIN ELECTRIC <mohsenamini1081@gmail.com>",
+        from: "VOLTAMIN ELECTRIC <sam@voltaminelectric.com>",
         to: email,
         subject: "We received your message!",
         html: `

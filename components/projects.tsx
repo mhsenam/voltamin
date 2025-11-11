@@ -3,59 +3,83 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { useState } from "react";
 
 export const Projects = () => {
+  // Distribute 30 images across 6 projects (5 images per project)
+  const projectImages = [
+    Array.from({ length: 5 }, (_, i) => `/images/1366 (${i + 1}).webp`),
+    Array.from({ length: 5 }, (_, i) => `/images/1366 (${i + 6}).webp`),
+    Array.from({ length: 5 }, (_, i) => `/images/1366 (${i + 11}).webp`),
+    Array.from({ length: 5 }, (_, i) => `/images/1366 (${i + 16}).webp`),
+    Array.from({ length: 5 }, (_, i) => `/images/1366 (${i + 21}).webp`),
+    Array.from({ length: 5 }, (_, i) => `/images/1366 (${i + 26}).webp`),
+  ];
+
   const projects = [
     {
       title: "City Center Commercial Complex",
       description:
         "Installation of smart LED lighting system and industrial control system for large commercial complex",
       tags: ["LED Lighting", "Control Systems", "Automation"],
-      image: "bg-gradient-to-br from-blue-400 to-blue-600",
       year: "2024",
+      images: projectImages[0],
     },
     {
       title: "Residential Tower Building",
       description:
         "Complete electrical system, lighting, and security system installation for 200 residential units",
       tags: ["Electrical Systems", "Lighting", "Security"],
-      image: "bg-gradient-to-br from-green-400 to-green-600",
       year: "2024",
+      images: projectImages[1],
     },
     {
       title: "Industrial Solar Power Plant",
       description:
         "Design and installation of 50kW solar power system for energy savings and cost reduction",
       tags: ["Solar Energy", "Industrial", "Efficiency"],
-      image: "bg-gradient-to-br from-yellow-400 to-orange-500",
       year: "2023",
+      images: projectImages[2],
     },
     {
       title: "Manufacturing Plant Renovation",
       description:
         "Complete electrical system renovation, industrial lighting, and production line control systems",
       tags: ["Industrial", "Lighting", "Control"],
-      image: "bg-gradient-to-br from-red-400 to-pink-500",
       year: "2023",
+      images: projectImages[3],
     },
     {
       title: "Modern Smart Home",
       description:
         "Design and installation of smart home system with adaptive lighting and temperature control",
       tags: ["Smart Home", "IoT", "Automation"],
-      image: "bg-gradient-to-br from-purple-400 to-indigo-600",
       year: "2023",
+      images: projectImages[4],
     },
     {
       title: "Chain Store Network (15 Locations)",
       description:
         "Installation and commissioning of lighting, heating, and control systems across all locations",
       tags: ["Commercial", "Lighting", "HVAC"],
-      image: "bg-gradient-to-br from-cyan-400 to-blue-600",
       year: "2022",
+      images: projectImages[5],
     },
   ];
+
+  // State for image sliders
+  const [currentImageIndex, setCurrentImageIndex] = useState<{
+    [key: number]: number;
+  }>({
+    0: 0,
+    1: 0,
+    2: 0,
+    3: 0,
+    4: 0,
+    5: 0,
+  });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -108,21 +132,92 @@ export const Projects = () => {
                 whileHover={{ y: -8 }}
               >
                 <Card className="h-full overflow-hidden border-0 shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer group">
-                  {/* Image Section */}
-                  <div
-                    className={`h-32 md:h-40 ${project.image} relative overflow-hidden`}
-                  >
+                  {/* Image Slider Section */}
+                  <div className="relative h-32 md:h-40 overflow-hidden bg-gray-200">
+                    {/* Main Image */}
                     <motion.div
-                      className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center"
+                      key={currentImageIndex[index]}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="relative w-full h-full"
+                    >
+                      <Image
+                        src={project.images[currentImageIndex[index]]}
+                        alt={`${project.title} - Image ${
+                          currentImageIndex[index] + 1
+                        }`}
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
+
+                    {/* Hover Overlay with Navigation */}
+                    <motion.div
+                      className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4"
                       whileHover={{ opacity: 1 }}
                     >
-                      <motion.div
-                        className="w-12 h-12 bg-white rounded-full flex items-center justify-center"
-                        whileHover={{ scale: 1.2 }}
+                      {/* Left Arrow */}
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setCurrentImageIndex({
+                            ...currentImageIndex,
+                            [index]:
+                              (currentImageIndex[index] -
+                                1 +
+                                project.images.length) %
+                              project.images.length,
+                          });
+                        }}
+                        className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all"
                       >
-                        <ArrowUpRight className="w-6 h-6 text-primary" />
-                      </motion.div>
+                        <ChevronLeft className="w-5 h-5" />
+                      </button>
+
+                      {/* Right Arrow */}
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setCurrentImageIndex({
+                            ...currentImageIndex,
+                            [index]:
+                              (currentImageIndex[index] + 1) %
+                              project.images.length,
+                          });
+                        }}
+                        className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-primary hover:text-white transition-all"
+                      >
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
                     </motion.div>
+
+                    {/* Image Counter */}
+                    <div className="absolute bottom-2 right-2 bg-black/60 text-white px-3 py-1 rounded-full text-xs font-semibold">
+                      {currentImageIndex[index] + 1}/{project.images.length}
+                    </div>
+
+                    {/* Dots Indicator */}
+                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1">
+                      {project.images.map((_, dotIndex) => (
+                        <button
+                          key={dotIndex}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setCurrentImageIndex({
+                              ...currentImageIndex,
+                              [index]: dotIndex,
+                            });
+                          }}
+                          className={`w-2 h-2 rounded-full transition-all ${
+                            dotIndex === currentImageIndex[index]
+                              ? "bg-white w-6"
+                              : "bg-white/50"
+                          }`}
+                        />
+                      ))}
+                    </div>
                   </div>
 
                   {/* Content Section */}
