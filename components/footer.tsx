@@ -1,17 +1,17 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { Zap, Heart, MessageCircle } from 'lucide-react'
+import { motion } from "framer-motion";
+import { Zap, Heart, MessageCircle } from "lucide-react";
 
 export const Footer = () => {
-  const currentYear = new Date().getFullYear()
+  const currentYear = new Date().getFullYear();
 
   const footerLinks = [
-    { label: 'About', href: '#about' },
-    { label: 'Services', href: '#services' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
-  ]
+    { label: "About", href: "#about" },
+    { label: "Services", href: "#services" },
+    { label: "Projects", href: "#projects" },
+    { label: "Contact", href: "#contact" },
+  ];
 
   return (
     <footer className="bg-foreground text-white py-12 md:py-16 border-t border-white/10">
@@ -33,7 +33,8 @@ export const Footer = () => {
               <span className="text-xl font-bold">VOLTAMIN ELECTRIC</span>
             </div>
             <p className="text-white/70 text-sm leading-relaxed">
-              Professional electrical specialist with 15 years of experience in specialized electrical services
+              Professional electrical specialist with 15 years of experience in
+              specialized electrical services
             </p>
           </motion.div>
 
@@ -82,9 +83,7 @@ export const Footer = () => {
                   ✉ info@voltaminelectric.com
                 </a>
               </li>
-              <li className="text-white/70">
-                📍 New York, USA
-              </li>
+              <li className="text-white/70">📍 Los Angeles, USA</li>
             </ul>
           </motion.div>
 
@@ -144,5 +143,5 @@ export const Footer = () => {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};

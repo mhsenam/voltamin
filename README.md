@@ -1,223 +1,266 @@
-# الکتریکیا - پورتفولیو متخصص برق
+# VOLTAMIN ELECTRIC - Electrical Specialist Portfolio
 
 ![Next.js](https://img.shields.io/badge/Next.js-14.0-black)
 ![React](https://img.shields.io/badge/React-18.2-blue)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3-38B2AC)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.2-3178C6)
 
-یک وبسایت حرفه‌ای برای معرفی و نمایش خدمات متخصص برق و الکتریسیته.
+A professional website to showcase electrical specialist services and expertise.
 
-## ✨ ویژگی‌های اصلی
+## ✨ Key Features
 
-- ⚡ **طراحی مدرن و جذاب** - رابط کاربری زیبا و مدرن
-- 🎨 **تم پاسخگو** - متناسب با تمام سایز صفحات
-- 📱 **موبایل فیرست** - طراحی اول برای موبایل
-- 🌊 **انیمیشن‌های روان** - استفاده از Framer Motion
-- 🔍 **SEO بهینه** - بهینه برای موتورهای جستجو
-- 📝 **کامل‌ترین اطلاعات** - بخش‌های جامع
-- ♿ **دسترس‌پذیری بالا** - پایبند به استانداردهای دسترس‌پذیری
+- ⚡ **Modern & Attractive Design** - Beautiful and modern user interface
+- 🎨 **Responsive Theme** - Perfectly adapted to all screen sizes
+- 📱 **Mobile First** - Designed with mobile-first approach
+- 🌊 **Smooth Animations** - Powered by Framer Motion
+- 🔍 **SEO Optimized** - Optimized for search engines
+- 📝 **Complete Information** - Comprehensive sections
+- ♿ **High Accessibility** - Compliant with accessibility standards
+- 📧 **Contact Form** - Email integration ready
+- ⭐ **Testimonials** - Infinite scroll testimonial carousel
+- ❓ **FAQ Section** - Comprehensive frequently asked questions
 
-## 🎯 بخش‌های سایت
+## 🎯 Website Sections
 
-### 1. **Navigation (ناوبری)**
-- منوی چسبان در بالای صفحه
-- لینک‌های دسترسی سریع
-- دکمه درخواست فوری
+### 1. **Navigation**
 
-### 2. **Hero Section (بخش قهرمان)**
-- معرفی فوری
-- آمار تاثیرگذار
-- دکمه‌های عمل سریع
-- انیمیشن‌های جذاب
+- Sticky navbar at the top
+- Quick access links
+- Instant action button
 
-### 3. **About (درباره)**
-- معرفی تفصیلی
-- ویژگی‌های منحصر به فرد
-- مهارت‌های تخصصی
+### 2. **Hero Section**
 
-### 4. **Services (خدمات)**
-- ۶ خدمت اصلی
-- شرح تفصیلی هر خدمت
-- آیکون‌های جذاب
-- دکمه درخواست مشاوره
+- Instant introduction
+- Impactful statistics
+- Quick action buttons
+- Engaging animations
+- Clickable scroll indicator
 
-### 5. **Projects (نمونه کارها)**
-- نمایش ۶ پروژه موفق
-- تصاویر رنگی
-- برچسب‌های دسته‌بندی
-- تاریخ انجام پروژه
+### 3. **About**
 
-### 6. **Contact (تماس)**
-- فرم تماس تفاعلی
-- روش‌های تماس متعدد
-- شبکه‌های اجتماعی
-- نقشه موقعیت
+- Detailed introduction
+- Unique features (Why Choose Us)
+- Professional expertise
+- Payment methods accepted
 
-### 7. **Footer (پایین‌صفحه)**
-- اطلاعات مختصر
-- لینک‌های دسترسی سریع
-- اطلاعات تماس
-- شبکه‌های اجتماعی
+### 4. **Services**
 
-## 🚀 شروع سریع
+- 2 main service offerings:
+  - New Lighting Installation
+  - Replacement of Lighting
+- Detailed service options:
+  - Ceiling heights
+  - Construction types
+  - Property types
+- Call-to-action button
 
-### پیش‌نیازها
-- Node.js 18+ 
-- npm یا yarn
+### 5. **Projects**
 
-### نصب
+- Showcase of 6 successful projects
+- Colorful project images
+- Category tags
+- Project completion dates
+
+### 6. **Testimonials**
+
+- Infinite scrolling carousel
+- 5-star customer reviews
+- Service details
+- Customer names and dates
+- Professional presentation
+
+### 7. **FAQ**
+
+- 8 comprehensive Q&A sections
+- Expandable answers
+- Professional styling
+- Mobile responsive
+
+### 8. **Contact**
+
+- Interactive contact form
+- Multiple contact methods
+- Social media links (WhatsApp & Instagram)
+- Real-time form status feedback
+- Email integration ready
+
+### 9. **Footer**
+
+- Brand information
+- Quick access links
+- Contact information
+- Social media links
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+
+### Installation
 
 ```bash
-# کلون مخزن
+# Clone repository
 git clone <repository-url>
 cd voltamin
 
-# نصب وابستگی‌ها
+# Install dependencies
 npm install
 
-# اجرای سرور توسعه
+# Run development server
 npm run dev
 ```
 
-سایت در `http://localhost:3000` در دسترس خواهد بود.
+The site will be available at `http://localhost:3000`.
 
-## 🛠️ فناوری‌های استفاده‌شده
+## 🛠️ Technologies Used
 
 ### Frontend Framework
-- **Next.js 14** - فریم‌ورک React برای تولید سایت‌های استاتیک و داینامیک
-- **React 18** - کتابخانه JavaScript برای ساخت رابط کاربری
+
+- **Next.js 14** - React framework for static and dynamic site generation
+- **React 18** - JavaScript library for building user interfaces
 
 ### Styling
-- **Tailwind CSS 3** - فریم‌ورک CSS ابتدایی
-- **shadcn/ui** - مجموعه‌ای از اجزای React بر پایه Radix UI و Tailwind
+
+- **Tailwind CSS 3** - Utility-first CSS framework
+- **shadcn/ui** - Collection of React components based on Radix UI and Tailwind
 
 ### Animations
-- **Framer Motion** - کتابخانه انیمیشن برای React
-- **Tailwind CSS Animate** - انیمیشن‌های پیش‌ساخته
 
-### اضافی
-- **TypeScript** - زبان برنامه‌نویسی تایپ شده
-- **Lucide React** - آیکون‌های مدرن SVG
-- **Vazirmatn Font** - فونت فارسی برای قابلیت خواندگی بهتر
+- **Framer Motion** - Animation library for React
+- **Tailwind CSS Animate** - Pre-built animations
 
-## 📁 ساختار پروژه
+### Additional
+
+- **TypeScript** - Typed programming language
+- **Lucide React** - Modern SVG icons
+- **Vazirmatn Font** - Professional font for better readability
+
+## 📁 Project Structure
 
 ```
 voltamin/
 ├── app/
-│   ├── layout.tsx          # تنظیمات کلی صفحه
-│   └── page.tsx            # صفحه اصلی
+│   ├── api/
+│   │   └── send-email/          # Email API endpoint
+│   ├── layout.tsx               # Global page layout
+│   └── page.tsx                 # Homepage
 ├── components/
-│   ├── navigation.tsx      # شریط ناوبری
-│   ├── hero.tsx            # بخش قهرمان
-│   ├── about.tsx           # بخش درباره
-│   ├── services.tsx        # بخش خدمات
-│   ├── projects.tsx        # بخش نمونه‌کارها
-│   ├── contact.tsx         # بخش تماس
-│   ├── footer.tsx          # پایین‌صفحه
+│   ├── navigation.tsx           # Navigation bar
+│   ├── hero.tsx                 # Hero section
+│   ├── about.tsx                # About section
+│   ├── services.tsx             # Services section
+│   ├── projects.tsx             # Portfolio section
+│   ├── testimonials.tsx         # Testimonials carousel
+│   ├── faq.tsx                  # FAQ section
+│   ├── contact.tsx              # Contact section
+│   ├── footer.tsx               # Footer
 │   └── ui/
-│       ├── button.tsx      # کامپوننت دکمه
-│       ├── card.tsx        # کامپوننت کارت
-│       └── badge.tsx       # کامپوننت برچسب
+│       ├── button.tsx           # Button component
+│       ├── card.tsx             # Card component
+│       └── badge.tsx            # Badge component
+├── config/
+│   └── site.config.ts           # Site configuration
 ├── lib/
-│   └── utils.ts            # توابع کمکی
+│   └── utils.ts                 # Utility functions
 ├── styles/
-│   └── globals.css         # استایل‌های عمومی
-├── public/                 # فایل‌های استاتیک
-├── tailwind.config.ts      # تنظیمات Tailwind
-├── tsconfig.json           # تنظیمات TypeScript
-├── next.config.js          # تنظیمات Next.js
-└── package.json            # وابستگی‌های پروژه
+│   └── globals.css              # Global styles
+├── public/                       # Static files
+├── tailwind.config.ts           # Tailwind configuration
+├── tsconfig.json                # TypeScript configuration
+├── next.config.js               # Next.js configuration
+└── package.json                 # Project dependencies
 ```
 
-## 🎨 طراحی و رنگ‌ها
+## 🎨 Design & Colors
 
-### رنگ‌های اصلی
-- **Primary (آبی)**: `#3B82F6` - رنگ اصلی برای دکمه‌ها و عناصر برجسته
-- **Secondary (خاکستری)**: `#F3F4F6` - رنگ پس‌زمینه
-- **Accent (طلایی)**: `#FBBF24` - تاکید و جلب توجه
-- **Foreground (تیره)**: `#1F2937` - رنگ متن
+### Primary Colors
 
-### نمایش مظلم
-- تم تیره پشتیبانی شده برای بهتری دیدگی در شب
-- انتقال هموار بین تم‌ها
+- **Primary (Blue)**: `#3B82F6` - Main color for buttons and highlights
+- **Secondary (Gray)**: `#F3F4F6` - Background color
+- **Accent (Amber)**: `#FBBF24` - Emphasis and attention
+- **Foreground (Dark)**: `#1F2937` - Text color
 
-## 🔧 شخصی‌سازی
+### Dark Theme
 
-### تغییر اطلاعات شخصی
+- Dark theme supported for better nighttime visibility
+- Smooth transitions between themes
 
-1. **در `components/navigation.tsx`**:
+## 🔧 Customization
+
+### Change Personal Information
+
+1. **In `config/site.config.ts`**:
+
    ```typescript
-   // تغییر نام
-   <span>نام شما</span>
-   
-   // تغییر لینک‌های منو
-   const links = [
-     { label: 'درباره', href: '#about' },
-     // ...
-   ]
+   personal: {
+     name: "Your Name",
+     email: "your@email.com",
+     phone: "+1-XXX-XXX-XXXX",
+     // ... other information
+   }
    ```
 
-2. **در `components/hero.tsx`**:
+2. **In `components/navigation.tsx`**:
+
    ```typescript
-   // تغییر نام
-   <span className="text-primary">نام شما</span>
-   
-   // تغییر متن‌های توضیحی
-   <p className="...">توضیح جدید</p>
+   // Update navigation links and branding
    ```
 
-3. **در `components/contact.tsx`**:
+3. **In `components/contact.tsx`**:
    ```typescript
-   // تغییر اطلاعات تماس
-   value: 'شماره تلفن',
-   href: 'tel:+...'
+   // Update contact information
    ```
 
-### تغییر رنگ‌ها
+### Change Colors
 
-در `styles/globals.css`:
+In `styles/globals.css`:
+
 ```css
 :root {
-  --primary: 217 91% 60%;  /* تغییر رنگ اصلی */
-  --accent: 40 100% 50%;   /* تغییر رنگ تاکید */
+  --primary: 217 91% 60%; /* Change primary color */
+  --accent: 40 100% 50%; /* Change accent color */
 }
 ```
 
-## 📦 Build و Deploy
+## 📦 Build & Deploy
 
-### ساخت برای تولید
+### Build for Production
 
 ```bash
 npm run build
 npm start
 ```
 
-### Deployment بر روی Vercel
+### Deployment on Vercel
 
 ```bash
-# نصب Vercel CLI
+# Install Vercel CLI
 npm install -g vercel
 
 # Deploy
 vercel
 ```
 
-یا با اتصال GitHub:
-1. Push کد به GitHub
-2. وارد [vercel.com](https://vercel.com) شوید
+Or with GitHub integration:
+
+1. Push code to GitHub
+2. Visit [vercel.com](https://vercel.com)
 3. Select Repository
 4. Deploy
 
-## 🌐 Deployment بر روی سایر پلتفرم‌ها
+## 🌐 Deployment on Other Platforms
 
 ### Netlify
+
 ```bash
 npm run build
-# فایل‌های ساخته شده در .next است
+# Built files are in .next directory
 ```
 
 ### Docker
+
 ```dockerfile
 FROM node:18-alpine
 WORKDIR /app
@@ -229,60 +272,77 @@ EXPOSE 3000
 CMD ["npm", "start"]
 ```
 
-## 📱 بهینه‌سازی برای سئو
+## 📱 SEO Optimization
 
-- ✅ Metadata بهینه شده
-- ✅ Open Graph تنظیمات
-- ✅ استانداردهای دسترسی‌پذیری
-- ✅ بارگذاری سریع صفحه
-- ✅ موبایل‌فرست ایندکسینگ
+- ✅ Optimized metadata
+- ✅ Open Graph configuration
+- ✅ Accessibility standards compliance
+- ✅ Fast page loading
+- ✅ Mobile-first indexing
 
-## ⚙️ دستورات معمول
+## ⚙️ Common Commands
 
 ```bash
-# اجرای حالت توسعه
+# Run development server
 npm run dev
 
-# ساخت برای تولید
+# Build for production
 npm run build
 
-# اجرای نسخه تولیدی
+# Run production version
 npm start
 
-# بررسی و تصحیح خطا
+# Check and lint code
 npm run lint
 ```
 
-## 🤝 مشارکت
+## 📧 Email Integration
 
-برای مشارکت:
-1. Fork مخزن
-2. ایجاد شاخه جدید (`git checkout -b feature/AmazingFeature`)
-3. Commit تغییرات (`git commit -m 'Add some AmazingFeature'`)
-4. Push به شاخه (`git push origin feature/AmazingFeature`)
-5. باز کردن Pull Request
+The contact form is configured to send emails to: **sam@voltaminelectric.com**
 
-## 📄 لایسنس
+To enable email functionality, integrate with one of these services:
 
-این پروژه تحت لایسنس MIT است. برای جزئیات بیشتر `LICENSE` را ببینید.
+- **Resend** (recommended for Next.js)
+- **SendGrid**
+- **Mailgun**
+- **AWS SES**
+- **Firebase**
 
-## 📞 پشتیبانی
+Update the `app/api/send-email/route.ts` file with your preferred email service.
 
-برای سؤالات و پشتیبانی:
-- 📧 Email: info@electrical.com
-- 📱 Phone: ۰۹۱۲۳۴۵۶۷۸۹
-- 💬 Telegram: @yourhandle
+## 🤝 Contributing
 
-## 👨‍💻 نویسنده
+To contribute:
 
-**محسن احمدی** - متخصص برق و الکتریسیته
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License. See `LICENSE` file for details.
+
+## 📞 Contact & Support
+
+For questions and support:
+
+- 📧 Email: sam@voltaminelectric.com
+- 📱 Phone: +1-818-699-2255
+- 💬 WhatsApp: +1-818-699-2255
+- 📸 Instagram: [@voltamin_electric](https://www.instagram.com/voltamin_electric/)
+
+## 👨‍💻 Author
+
+**Saeid Amini** - Professional Electrical Specialist
 
 ---
 
 <div align="center">
 
-Made with ❤️ by محسن احمدی
+Made with ❤️ by Saeid Amini
 
-[بازدید سایت](https://electrical.com) | [تماس](mailto:info@electrical.com) | [Instagram](https://instagram.com)
+[Visit Website](https://voltaminelectric.com) | [Contact](mailto:sam@voltaminelectric.com) | [Instagram](https://www.instagram.com/voltamin_electric/)
 
 </div>
