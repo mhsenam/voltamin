@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 13% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 13% 20%;
+
+    --muted: 210 10% 92%;
+    --muted-foreground: 215 14% 45%;
+
+    --accent: 40 100% 50%;
+    --accent-foreground: 220 13% 20%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 10% 90%;
+    --input: 210 10% 95%;
+    --ring: 40 100% 50%;
+
+    --radius: 0.75rem;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 13% 91%;
+    --secondary-foreground: 217 91% 60%;
+  }
+
+  .dark {
+    --background: 220 13% 12%;
+    --foreground: 210 10% 95%;
+
+    --card: 220 13% 18%;
+    --card-foreground: 210 10% 95%;
+
+    --popover: 220 13% 18%;
+    --popover-foreground: 210 10% 95%;
+
+    --muted: 215 14% 28%;
+    --muted-foreground: 215 14% 60%;
+
+    --accent: 40 100% 55%;
+    --accent-foreground: 220 13% 12%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 215 14% 25%;
+    --input: 215 14% 22%;
+    --ring: 40 100% 55%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 220 13% 12%;
+
+    --secondary: 215 14% 28%;
+    --secondary-foreground: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .gradient-primary {
+    @apply bg-gradient-to-r from-blue-600 to-blue-400;
+  }
+  
+  .gradient-accent {
+    @apply bg-gradient-to-r from-amber-400 to-orange-400;
+  }
+  
+  .shadow-soft {
+    @apply shadow-sm hover:shadow-md transition-shadow;
+  }
+}
+
