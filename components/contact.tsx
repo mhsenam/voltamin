@@ -11,6 +11,13 @@ import {
   CheckCircle2,
   AlertCircle,
 } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { siteConfig } from "@/config/site.config";
 
 const { business, social } = siteConfig;
@@ -66,10 +73,12 @@ export const Contact = () => {
   } | null>(null);
 
   const update = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+  // Radix Select reports the value directly rather than through an event
+  const setField = (field: keyof typeof initialForm) => (value: string) =>
+    setForm((prev) => ({ ...prev, [field]: value }));
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -221,41 +230,44 @@ export const Contact = () => {
               <label htmlFor="service" className={labelClass}>
                 Service needed
               </label>
-              <select
-                id="service"
-                name="service"
+              <Select
                 value={form.service}
-                onChange={update}
-                className={inputClass}
+                onValueChange={setField("service")}
               >
-                <option value="">Select a service</option>
-                {siteConfig.services.map((service) => (
-                  <option key={service.title} value={service.title}>
-                    {service.title}
-                  </option>
-                ))}
-                <option value="Something else">Something else</option>
-              </select>
+                <SelectTrigger id="service" aria-label="Service needed">
+                  <SelectValue placeholder="Select a service" />
+                </SelectTrigger>
+                <SelectContent>
+                  {siteConfig.services.map((service) => (
+                    <SelectItem key={service.title} value={service.title}>
+                      {service.title}
+                    </SelectItem>
+                  ))}
+                  <SelectItem value="Something else">
+                    Something else
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div>
               <label htmlFor="city" className={labelClass}>
                 City
               </label>
-              <select
-                id="city"
-                name="city"
-                value={form.city}
-                onChange={update}
-                className={inputClass}
-              >
-                <option value="">Select a city</option>
-                {siteConfig.serviceAreas.map((city) => (
-                  <option key={city} value={city}>
-                    {city}
-                  </option>
-                ))}
-                <option value="Other">Elsewhere in Orange County</option>
-              </select>
+              <Select value={form.city} onValueChange={setField("city")}>
+                <SelectTrigger id="city" aria-label="City">
+                  <SelectValue placeholder="Select a city" />
+                </SelectTrigger>
+                <SelectContent>
+                  {siteConfig.serviceAreas.map((city) => (
+                    <SelectItem key={city} value={city}>
+                      {city}
+                    </SelectItem>
+                  ))}
+                  <SelectItem value="Elsewhere in Orange County">
+                    Elsewhere in Orange County
+                  </SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
 
