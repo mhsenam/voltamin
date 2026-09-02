@@ -1,147 +1,167 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Zap, Heart, MessageCircle } from "lucide-react";
+import { Instagram, Facebook, MessageCircle, Phone, Mail } from "lucide-react";
+import { siteConfig } from "@/config/site.config";
 
-export const Footer = () => {
-  const currentYear = new Date().getFullYear();
+const { business, social, proof } = siteConfig;
 
-  const footerLinks = [
-    { label: "About", href: "#about" },
-    { label: "Services", href: "#services" },
-    { label: "Projects", href: "#projects" },
-    { label: "Contact", href: "#contact" },
-  ];
+const navLinks = [
+  { label: "Services", href: "#services" },
+  { label: "How it works", href: "#process" },
+  { label: "Recent work", href: "#work" },
+  { label: "Credentials", href: "#about" },
+  { label: "Reviews", href: "#reviews" },
+  { label: "FAQ", href: "#faq" },
+];
 
-  return (
-    <footer className="bg-foreground text-white py-12 md:py-16 border-t border-white/10">
-      <div className="container mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8"
-        >
-          {/* Brand Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <Zap className="w-6 h-6" />
-              <span className="text-xl font-bold">VOLTAMIN ELECTRIC</span>
-            </div>
-            <p className="text-white/70 text-sm leading-relaxed">
-              Professional electrical specialist with 15 years of experience in
-              specialized electrical services
-            </p>
-          </motion.div>
+export const Footer = () => (
+  <footer className="border-t border-white/10 bg-navy-950 text-navy-300">
+    {/* Extra bottom padding clears the sticky mobile call bar */}
+    <div className="shell pb-24 pt-14 md:py-16 lg:pb-16">
+      <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
+        {/* Brand */}
+        <div>
+          <div className="flex items-center gap-2.5">
+            <span className="flex h-8 w-8 items-center justify-center rounded-[5px] bg-gold">
+              <svg
+                viewBox="0 0 24 24"
+                className="h-4 w-4 fill-navy-950"
+                aria-hidden="true"
+              >
+                <path d="M13.5 2 4 13.2h6.2L9.4 22 20 10.4h-6.6z" />
+              </svg>
+            </span>
+            <span className="text-[15px] font-bold uppercase leading-none tracking-[0.14em] text-white">
+              Voltamin
+              <span className="mt-1 block text-[8.5px] font-semibold tracking-[0.34em] text-navy-400">
+                Electric
+              </span>
+            </span>
+          </div>
 
-          {/* Quick Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
-            <h4 className="font-bold mb-4 text-lg">Quick Links</h4>
-            <ul className="space-y-2">
-              {footerLinks.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-white/70 hover:text-white transition-colors text-sm"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
+          <p className="mt-5 max-w-xs text-[13.5px] leading-relaxed">
+            {business.tagline} Residential, commercial, and industrial work by a
+            licensed {business.licenseClass} contractor.
+          </p>
 
-          {/* Info Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h4 className="font-bold mb-4 text-lg">Contact Information</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
+          <div className="mt-6 flex gap-2">
+            <a
+              href={social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="flex h-9 w-9 items-center justify-center rounded-[5px] border border-white/10 transition-colors hover:border-gold hover:text-gold"
+            >
+              <Instagram className="h-4 w-4" />
+            </a>
+            <a
+              href={social.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="flex h-9 w-9 items-center justify-center rounded-[5px] border border-white/10 transition-colors hover:border-gold hover:text-gold"
+            >
+              <Facebook className="h-4 w-4" />
+            </a>
+            <a
+              href={social.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="flex h-9 w-9 items-center justify-center rounded-[5px] border border-white/10 transition-colors hover:border-gold hover:text-gold"
+            >
+              <MessageCircle className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+
+        {/* Nav */}
+        <div>
+          <h3 className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-white">
+            Explore
+          </h3>
+          <ul className="mt-4 space-y-2.5">
+            {navLinks.map((link) => (
+              <li key={link.label}>
                 <a
-                  href="tel:+15551234567"
-                  className="text-white/70 hover:text-white transition-colors"
+                  href={link.href}
+                  className="text-[13.5px] transition-colors hover:text-gold"
                 >
-                  ☎ +1-555-123-4567
+                  {link.label}
                 </a>
               </li>
-              <li>
-                <a
-                  href="mailto:info@voltaminelectric.com"
-                  className="text-white/70 hover:text-white transition-colors"
-                >
-                  ✉ info@voltaminelectric.com
-                </a>
+            ))}
+          </ul>
+        </div>
+
+        {/* Service areas */}
+        <div>
+          <h3 className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-white">
+            Service areas
+          </h3>
+          <ul className="mt-4 space-y-2.5">
+            {siteConfig.serviceAreas.map((city) => (
+              <li key={city} className="text-[13.5px]">
+                {city}, CA
               </li>
-              <li className="text-white/70">📍 Los Angeles, USA</li>
-            </ul>
-          </motion.div>
+            ))}
+          </ul>
+        </div>
 
-          {/* Social Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <h4 className="font-bold mb-4 text-lg">Connect With Us</h4>
-            <div className="flex gap-3">
+        {/* Contact */}
+        <div>
+          <h3 className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-white">
+            Get in touch
+          </h3>
+          <ul className="mt-4 space-y-3">
+            <li>
               <a
-                href="https://wa.me/+18186992255"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-green-600/20 hover:bg-green-600/40 rounded-lg flex items-center justify-center transition-colors"
-                title="WhatsApp"
+                href={`tel:${business.phoneRaw}`}
+                className="inline-flex items-center gap-2 text-[14px] font-semibold text-white transition-colors hover:text-gold"
               >
-                <MessageCircle className="w-5 h-5 text-green-400" />
+                <Phone className="h-3.5 w-3.5 text-gold" />
+                {business.phone}
               </a>
+            </li>
+            <li>
               <a
-                href="https://www.instagram.com/voltamin_electric/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-pink-600/20 hover:bg-pink-600/40 rounded-lg flex items-center justify-center transition-colors"
-                title="Instagram"
+                href={`mailto:${business.email}`}
+                className="inline-flex items-center gap-2 text-[13.5px] transition-colors hover:text-gold"
               >
-                <span className="text-sm font-bold">IG</span>
+                <Mail className="h-3.5 w-3.5 text-gold" />
+                {business.email}
               </a>
-            </div>
-          </motion.div>
-        </motion.div>
+            </li>
+            <li className="pt-1 text-[13px]">
+              {business.city}, {business.state} · Serving {business.region}
+            </li>
+            <li className="text-[13px]">
+              Rated {proof.rating.toFixed(1)} from {proof.reviewCount} reviews
+            </li>
+          </ul>
 
-        {/* Divider */}
-        <div className="border-t border-white/10 pt-8">
-          {/* Bottom Section */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-col md:flex-row items-center justify-between gap-4"
-          >
-            <p className="text-white/70 text-sm text-center md:text-right">
-              All rights reserved © {currentYear}
-            </p>
-            <p className="text-white/70 text-sm flex items-center justify-center gap-1">
-              Built with
-              <motion.span
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1, repeat: Infinity }}
+          <div className="mt-5 flex flex-wrap gap-1.5">
+            {siteConfig.payments.map((method) => (
+              <span
+                key={method}
+                className="rounded-full border border-white/10 px-2.5 py-1 text-[11px]"
               >
-                <Heart className="w-4 h-4 fill-current text-red-500" />
-              </motion.span>
-              by Saeid Amini
-            </p>
-          </motion.div>
+                {method}
+              </span>
+            ))}
+          </div>
         </div>
       </div>
-    </footer>
-  );
-};
+
+      <div className="mt-12 flex flex-col gap-3 border-t border-white/10 pt-7 text-[12px] sm:flex-row sm:items-center sm:justify-between">
+        <p>
+          © {new Date().getFullYear()} {business.name}. All rights reserved.
+        </p>
+        <p className="text-navy-400">
+          CSLB License #{business.license} · {business.licenseClass}{" "}
+          Classification · Licensed &amp; Insured
+        </p>
+      </div>
+    </div>
+  </footer>
+);

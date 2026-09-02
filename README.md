@@ -1,348 +1,196 @@
-# VOLTAMIN ELECTRIC - Electrical Specialist Portfolio
+# Voltamin Electric
 
 ![Next.js](https://img.shields.io/badge/Next.js-14.0-black)
 ![React](https://img.shields.io/badge/React-18.2-blue)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3-38B2AC)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.2-3178C6)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6)
 
-A professional website to showcase electrical specialist services and expertise.
+Marketing site for **Voltamin Electric**, a licensed C-10 electrical contractor
+(CSLB #1159185) serving Orange County, California. Single-page Next.js App Router
+site with a contact form that sends through Resend.
 
-## ✨ Key Features
+Live: [voltaminelectric.com](https://voltaminelectric.com)
 
-- ⚡ **Modern & Attractive Design** - Beautiful and modern user interface
-- 🎨 **Responsive Theme** - Perfectly adapted to all screen sizes
-- 📱 **Mobile First** - Designed with mobile-first approach
-- 🌊 **Smooth Animations** - Powered by Framer Motion
-- 🔍 **SEO Optimized** - Optimized for search engines
-- 📝 **Complete Information** - Comprehensive sections
-- ♿ **High Accessibility** - Compliant with accessibility standards
-- 📧 **Contact Form** - Email integration ready
-- ⭐ **Testimonials** - Infinite scroll testimonial carousel
-- ❓ **FAQ Section** - Comprehensive frequently asked questions
+---
 
-## 🎯 Website Sections
-
-### 1. **Navigation**
-
-- Sticky navbar at the top
-- Quick access links
-- Instant action button
-
-### 2. **Hero Section**
-
-- Instant introduction
-- Impactful statistics
-- Quick action buttons
-- Engaging animations
-- Clickable scroll indicator
-
-### 3. **About**
-
-- Detailed introduction
-- Unique features (Why Choose Us)
-- Professional expertise
-- Payment methods accepted
-
-### 4. **Services**
-
-- 2 main service offerings:
-  - New Lighting Installation
-  - Replacement of Lighting
-- Detailed service options:
-  - Ceiling heights
-  - Construction types
-  - Property types
-- Call-to-action button
-
-### 5. **Projects**
-
-- Showcase of 6 successful projects
-- Colorful project images
-- Category tags
-- Project completion dates
-
-### 6. **Testimonials**
-
-- Infinite scrolling carousel
-- 5-star customer reviews
-- Service details
-- Customer names and dates
-- Professional presentation
-
-### 7. **FAQ**
-
-- 8 comprehensive Q&A sections
-- Expandable answers
-- Professional styling
-- Mobile responsive
-
-### 8. **Contact**
-
-- Interactive contact form
-- Multiple contact methods
-- Social media links (WhatsApp & Instagram)
-- Real-time form status feedback
-- Email integration ready
-
-### 9. **Footer**
-
-- Brand information
-- Quick access links
-- Contact information
-- Social media links
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Node.js 18+
-- npm or yarn
-
-### Installation
+## Quick start
 
 ```bash
-# Clone repository
-git clone <repository-url>
-cd voltamin
-
-# Install dependencies
 npm install
-
-# Run development server
-npm run dev
+npm run dev          # http://localhost:3000
 ```
 
-The site will be available at `http://localhost:3000`.
+| Command | Does |
+| --- | --- |
+| `npm run dev` | Development server |
+| `npm run build` | Production build |
+| `npm start` | Serve the production build |
+| `npm run lint` | ESLint |
 
-## 🛠️ Technologies Used
+### Environment
 
-### Frontend Framework
+```bash
+# .env.local
+RESEND_API_KEY=re_xxxxxxxx
+```
 
-- **Next.js 14** - React framework for static and dynamic site generation
-- **React 18** - JavaScript library for building user interfaces
+Only the contact form needs this. Without it the build still succeeds and the page
+renders normally — `/api/send-email` returns a 503 telling the visitor to call instead.
 
-### Styling
+---
 
-- **Tailwind CSS 3** - Utility-first CSS framework
-- **shadcn/ui** - Collection of React components based on Radix UI and Tailwind
+## Editing content
 
-### Animations
+**Almost every string on the page lives in `config/site.config.ts`.** Components read
+from it and hold no hardcoded business facts, so copy changes are a one-file edit.
 
-- **Framer Motion** - Animation library for React
-- **Tailwind CSS Animate** - Pre-built animations
+| Key | Drives |
+| --- | --- |
+| `business` | Name, owner, licence, phone, email, city, tenure |
+| `proof` | Rating, review count, star breakdown, times hired, Top Pro year, keyword chips |
+| `trustBadges` | The five-badge bar under the hero |
+| `services` | The numbered `01`–`07` service list |
+| `projectOptions` | Ceiling height / construction type / property type qualifiers |
+| `process` | The five "How it works" steps |
+| `clients` | Residential / Commercial / Industrial cards |
+| `credentials` | The ten training and certification entries |
+| `serviceAreas` | Service-area grid, footer list, contact-form city dropdown |
+| `reviews` | Customer reviews and the owner's replies |
+| `faqs` | FAQ accordion |
+| `payments`, `social`, `seo` | Payment chips, social links, metadata |
 
-### Additional
+### Where the data comes from
 
-- **TypeScript** - Typed programming language
-- **Lucide React** - Modern SVG icons
-- **Vazirmatn Font** - Professional font for better readability
+The figures are taken from two live profiles and should be refreshed together:
 
-## 📁 Project Structure
+- **[Thumbtack](https://www.thumbtack.com/ca/lake-forest/interior-lighting-designer/voltamin-electric/service/452715709538287627)**
+  — rating, review count and breakdown, times hired, photo count, Top Pro status,
+  background-check date, licence, employees, payment methods, services, process,
+  credentials, reviews, FAQs.
+- **[Facebook](https://www.facebook.com/VoltaminElectric/)** — the service-area city
+  list, tagline, and contact details.
+
+Both render client-side, so `WebFetch` returns an empty page. Scrape them with a real
+browser (Playwright) and read `document.body.innerText`. On Thumbtack, click every
+"Show more" / "Read more" control first or the reviews, FAQs and service list stay
+collapsed.
+
+`proof.rating`, `proof.reviewCount`, `proof.timesHired`, `proof.photoCount` and
+`business.yearsInBusiness` all change over time — re-check them on any content refresh.
+
+### Photos
+
+`components/work.tsx` reads `/public/images/1366.webp` and `1366 (1).webp` …
+`1366 (29).webp` — 30 files, shown 12 at a time behind a "View all" toggle, with a
+keyboard-navigable lightbox. To change the set, drop files in `public/images` and update
+the `photos` array. The hero image is set separately in `components/hero.tsx`.
+
+---
+
+## Page structure
+
+`app/page.tsx` composes the sections in this order:
+
+| # | Component | Notes |
+| --- | --- | --- |
+| | `navigation` | Utility strip (licence, area, phone) + sticky header |
+| | `hero` | Headline, CTAs, rating strip, feature photo |
+| | `marquee` | Scrolling service keywords |
+| | `trust-bar` | Five credibility badges |
+| 01 | `services` | Seven services with detail chips + project qualifiers |
+| | `free-service-call` | The free-estimate differentiator |
+| 02 | `process` | Five steps from call to walk-through |
+| 03 | `clients` | Residential / commercial / industrial + payment chips |
+| 04 | `work` | 30-photo gallery with lightbox |
+| 05 | `about` | Owner story, licence verification, credentials |
+| | `testimonials` | Rating summary, keyword chips, reviews with replies |
+| 06 | `service-area` | Ten Orange County cities |
+| | `faq` | Eight-question accordion |
+| | `contact` | Contact channels + estimate request form |
+| | `footer` | Brand, nav, areas, contact, licence |
+| | `mobile-call-bar` | Sticky call / estimate bar below `lg` |
+
+`section-heading.tsx` renders the numbered headings shared by the `01`–`06` sections.
+
+---
+
+## Design system
+
+Navy ground with a gold accent, Inter throughout, hairline rules and numbered sections.
+
+| Token | Value | Use |
+| --- | --- | --- |
+| `navy-950` | `#070F1C` | Dark section backgrounds |
+| `navy-900` | `#0D1728` | Header utility strip, footer, theme colour |
+| `navy-50` | `#F2F5F9` | Alternating light section backgrounds |
+| `gold` | `#E9A621` | CTAs, section badges, accents, active states |
+
+Semantic tokens (`--primary`, `--accent`, `--muted`, …) are defined as HSL in
+`styles/globals.css`; the `navy` and `gold` scales are in `tailwind.config.ts`.
+
+Shared utility classes in `globals.css`:
+
+- `.shell` — page container, `max-w-[1180px]` with responsive padding
+- `.eyebrow` — small uppercase label with a gold leading rule
+- `.display` — tight-tracking display headings
+- `.animate-marquee` — the keyword ticker (disabled under `prefers-reduced-motion`)
+
+Section reveals use Framer Motion `whileInView`. This means **full-page screenshots come
+out mostly blank** — the viewport resize resets the observers. Capture viewport-sized
+screenshots at scroll offsets instead.
+
+---
+
+## Project structure
 
 ```
 voltamin/
 ├── app/
-│   ├── api/
-│   │   └── send-email/          # Email API endpoint
-│   ├── layout.tsx               # Global page layout
-│   └── page.tsx                 # Homepage
+│   ├── api/send-email/route.ts   # Resend handler (force-dynamic)
+│   ├── icon.svg                  # Favicon
+│   ├── layout.tsx                # Fonts, metadata, LocalBusiness JSON-LD
+│   └── page.tsx                  # Section composition
 ├── components/
-│   ├── navigation.tsx           # Navigation bar
-│   ├── hero.tsx                 # Hero section
-│   ├── about.tsx                # About section
-│   ├── services.tsx             # Services section
-│   ├── projects.tsx             # Portfolio section
-│   ├── testimonials.tsx         # Testimonials carousel
-│   ├── faq.tsx                  # FAQ section
-│   ├── contact.tsx              # Contact section
-│   ├── footer.tsx               # Footer
-│   └── ui/
-│       ├── button.tsx           # Button component
-│       ├── card.tsx             # Card component
-│       └── badge.tsx            # Badge component
-├── config/
-│   └── site.config.ts           # Site configuration
-├── lib/
-│   └── utils.ts                 # Utility functions
-├── styles/
-│   └── globals.css              # Global styles
-├── public/                       # Static files
-├── tailwind.config.ts           # Tailwind configuration
-├── tsconfig.json                # TypeScript configuration
-├── next.config.js               # Next.js configuration
-└── package.json                 # Project dependencies
+│   ├── navigation.tsx  hero.tsx  marquee.tsx  trust-bar.tsx
+│   ├── services.tsx    free-service-call.tsx  process.tsx  clients.tsx
+│   ├── work.tsx        about.tsx  testimonials.tsx  service-area.tsx
+│   ├── faq.tsx         contact.tsx  footer.tsx  mobile-call-bar.tsx
+│   ├── section-heading.tsx
+│   └── ui/                       # button, card, badge (currently unused)
+├── config/site.config.ts         # All site content
+├── lib/utils.ts                  # cn() class merger
+├── public/images/                # 30 job photos
+├── styles/globals.css            # Tokens + shared utilities
+└── tailwind.config.ts            # navy / gold scales, fonts
 ```
-
-## 🎨 Design & Colors
-
-### Primary Colors
-
-- **Primary (Blue)**: `#3B82F6` - Main color for buttons and highlights
-- **Secondary (Gray)**: `#F3F4F6` - Background color
-- **Accent (Amber)**: `#FBBF24` - Emphasis and attention
-- **Foreground (Dark)**: `#1F2937` - Text color
-
-### Dark Theme
-
-- Dark theme supported for better nighttime visibility
-- Smooth transitions between themes
-
-## 🔧 Customization
-
-### Change Personal Information
-
-1. **In `config/site.config.ts`**:
-
-   ```typescript
-   personal: {
-     name: "Your Name",
-     email: "your@email.com",
-     phone: "+1-XXX-XXX-XXXX",
-     // ... other information
-   }
-   ```
-
-2. **In `components/navigation.tsx`**:
-
-   ```typescript
-   // Update navigation links and branding
-   ```
-
-3. **In `components/contact.tsx`**:
-   ```typescript
-   // Update contact information
-   ```
-
-### Change Colors
-
-In `styles/globals.css`:
-
-```css
-:root {
-  --primary: 217 91% 60%; /* Change primary color */
-  --accent: 40 100% 50%; /* Change accent color */
-}
-```
-
-## 📦 Build & Deploy
-
-### Build for Production
-
-```bash
-npm run build
-npm start
-```
-
-### Deployment on Vercel
-
-```bash
-# Install Vercel CLI
-npm install -g vercel
-
-# Deploy
-vercel
-```
-
-Or with GitHub integration:
-
-1. Push code to GitHub
-2. Visit [vercel.com](https://vercel.com)
-3. Select Repository
-4. Deploy
-
-## 🌐 Deployment on Other Platforms
-
-### Netlify
-
-```bash
-npm run build
-# Built files are in .next directory
-```
-
-### Docker
-
-```dockerfile
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-EXPOSE 3000
-CMD ["npm", "start"]
-```
-
-## 📱 SEO Optimization
-
-- ✅ Optimized metadata
-- ✅ Open Graph configuration
-- ✅ Accessibility standards compliance
-- ✅ Fast page loading
-- ✅ Mobile-first indexing
-
-## ⚙️ Common Commands
-
-```bash
-# Run development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Run production version
-npm start
-
-# Check and lint code
-npm run lint
-```
-
-## 📧 Email Integration
-
-The contact form is configured to send emails to: **sam@voltaminelectric.com**
-
-To enable email functionality, integrate with one of these services:
-
-- **Resend** (recommended for Next.js)
-- **SendGrid**
-- **Mailgun**
-- **AWS SES**
-- **Firebase**
-
-Update the `app/api/send-email/route.ts` file with your preferred email service.
-
-## 🤝 Contributing
-
-To contribute:
-
-1. Fork the repository
-2. Create a new branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License. See `LICENSE` file for details.
-
-## 📞 Contact & Support
-
-For questions and support:
-
-- 📧 Email: sam@voltaminelectric.com
-- 📱 Phone: +1-818-699-2255
-- 💬 WhatsApp: +1-818-699-2255
-- 📸 Instagram: [@voltamin_electric](https://www.instagram.com/voltamin_electric/)
-
-## 👨‍💻 Author
-
-**Saeid Amini** - Professional Electrical Specialist
 
 ---
 
-<div align="center">
+## SEO
 
-Made with ❤️ by Saeid Amini
+`app/layout.tsx` emits an `Electrician` [schema.org](https://schema.org/Electrician)
+JSON-LD block covering the licence, phone, address, `areaServed` for all ten cities, and
+`aggregateRating` from `proof`. Keep it in sync when the rating or service areas change.
+Open Graph and keyword metadata are generated from `siteConfig.seo`.
 
-[Visit Website](https://voltaminelectric.com) | [Contact](mailto:sam@voltaminelectric.com) | [Instagram](https://www.instagram.com/voltamin_electric/)
+---
 
-</div>
+## Deployment
+
+Deploys to Vercel with no configuration beyond setting `RESEND_API_KEY` in the project's
+environment variables.
+
+```bash
+npm run build && npm start   # verify locally first
+```
+
+---
+
+## Contact
+
+**Saeid "Sam" Amini** — Voltamin Electric, Lake Forest, CA
+C-10 Licensed & Insured · CSLB #1159185
+
+[(818) 699-2255](tel:+18186992255) ·
+[Sam@VoltaminElectric.com](mailto:Sam@VoltaminElectric.com) ·
+[@voltamin_electric](https://www.instagram.com/voltamin_electric/)

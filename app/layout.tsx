@@ -1,41 +1,68 @@
 import type { Metadata, Viewport } from "next";
-import { Vazirmatn } from "next/font/google";
+import { Inter } from "next/font/google";
+import { siteConfig } from "@/config/site.config";
 import "@/styles/globals.css";
 
-const vazir = Vazirmatn({
-  subsets: ["arabic"],
-  variable: "--font-vazir",
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
+
+const { business, proof, seo, social } = siteConfig;
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#3B82F6",
+  themeColor: "#0D1728",
 };
 
 export const metadata: Metadata = {
-  title: "VOLTAMIN ELECTRIC - Electrical Specialist | Saeid Amini",
-  description:
-    "Professional electrical specialist with 15 years of experience. Services include installation, repair, and maintenance of electrical systems",
-  keywords: [
-    "electrical specialist",
-    "electrician",
-    "installation",
-    "repair",
-    "maintenance",
-    "solar energy",
-    "VOLTAMIN ELECTRIC",
-  ],
-  authors: [{ name: "Saeid Amini" }],
-  metadataBase: new URL("https://voltaminelectric.com"),
+  metadataBase: new URL(business.url),
+  title: seo.title,
+  description: seo.description,
+  keywords: [...seo.keywords],
+  authors: [{ name: business.owner }],
   openGraph: {
-    title: "VOLTAMIN ELECTRIC - Professional Electrical Services",
-    description: "Expert electrical services with 15 years of experience",
-    url: "https://voltaminelectric.com",
-    siteName: "VOLTAMIN ELECTRIC",
+    title: seo.title,
+    description: seo.description,
+    url: business.url,
+    siteName: business.name,
+    locale: "en_US",
     type: "website",
   },
+  robots: { index: true, follow: true },
+};
+
+// LocalBusiness structured data — helps the profile surface in local search
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Electrician",
+  name: business.name,
+  image: `${business.url}/images/1366 (22).webp`,
+  url: business.url,
+  telephone: business.phoneRaw,
+  email: business.email,
+  priceRange: business.priceRange,
+  founder: { "@type": "Person", name: business.owner },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: business.city,
+    addressRegion: business.state,
+    addressCountry: "US",
+  },
+  areaServed: siteConfig.serviceAreas.map((city) => ({
+    "@type": "City",
+    name: `${city}, CA`,
+  })),
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: proof.rating,
+    reviewCount: proof.reviewCount,
+    bestRating: 5,
+  },
+  hasCredential: `CSLB ${business.licenseClass} License #${business.license}`,
+  sameAs: [social.instagram, social.facebook, social.thumbtack],
 };
 
 export default function RootLayout({
@@ -44,12 +71,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" dir="ltr" className={vazir.variable}>
-      <head>
-        <meta charSet="utf-8" />
-        <meta name="theme-color" content="#3B82F6" />
-      </head>
-      <body className={`overflow-x-hidden`}>{children}</body>
+    <html lang="en" className={inter.variable}>
+      <body className="overflow-x-hidden">
+        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </body>
     </html>
   );
 }

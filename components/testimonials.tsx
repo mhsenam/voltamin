@@ -1,153 +1,161 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
-import { Card } from "@/components/ui/card";
+import { Star, Quote, ArrowUpRight } from "lucide-react";
+import { siteConfig } from "@/config/site.config";
 
-export const Testimonials = () => {
-  const testimonials = [
-    {
-      name: "Michael T.",
-      date: "Sep 22, 2025",
-      rating: 5,
-      text: "I couldn't be happier with Sam's work installing six recessed lights and a dimmer switch. Our vaulted ceiling added an extra layer of complexity, but he handled it flawlessly and the finished result looks perfect. Throughout the project, Sam provided helpful options and recommendations, arrived right on time, and kept the workspace spotless. His professionalism and attention to detail were outstanding. I highly recommend Sam for any electrical work and will definitely be hiring him again for future projects.",
-      service: "New lighting installation • 2-4 lights • Over 14 feet (lofty ceiling)",
-    },
-    {
-      name: "Mark N.",
-      date: "Jul 13, 2025",
-      rating: 5,
-      text: "Very glad we hired him to install recessed lights. Very skilled and diligent. I will definitely hire him again, and recommend him to anyone.",
-      service: "Install EV charger • 1 switch or outlet • Garage",
-    },
-    {
-      name: "Reza I.",
-      date: "3 weeks ago",
-      rating: 5,
-      text: "I want to start by saying that the whole experience with Sam was genuinely pleasant from beginning to end. He responded to my initial inquiry very quickly and showed up soon after to take a look at what turned out to be a pretty complex situation with installing a 30-amp outlet. He took the time to understand everything before starting the work, which I really appreciated. The installation itself was done with great care and professionalism — the kind of work that gives you confidence it's been done right. On top of that, Sam noticed and fixed a few other issues in our home's electrical setup that could've become safety concerns down the line. His prices were also very reasonable, especially considering the quality of work and the extra steps he took to make sure everything was safe and up to code. I'd definitely call Sam again for any electrical needs and wouldn't hesitate to recommend him to others.",
-      service: "Install EV charger • 1 switch or outlet • Garage",
-    },
-    {
-      name: "Jenny K.",
-      date: "3 weeks ago",
-      rating: 5,
-      text: "Sam and his partner showed up on time and installed the EV charger as we wanted. They asked us about different options a few times, and did it right in the long run. We appreciated their service and that they worked very hard! Would use them again.",
-      service: "Install EV charger • 1 switch or outlet • Garage",
-    },
-    {
-      name: "Kim B.",
-      date: "3 weeks ago",
-      rating: 5,
-      text: "Sam came over next day and did a fantastic job fixing a mess that a so called electrician made. I purchased this chandelier and needed it installed correctly with care. Sam was very knowledgeable and precise when fixing and installing my new chandelier. He identified the problem, fixed the problem and installed the new chandelier. I am thrilled I was able to find him and he was available. I highly recommend Sam!",
-      service: "1 switch or outlet • Chandelier installation",
-    },
-  ];
+const { proof, social, business } = siteConfig;
 
-  // Duplicate testimonials for infinite scroll effect
-  const duplicatedTestimonials = [...testimonials, ...testimonials];
+const Stars = ({ count = 5 }: { count?: number }) => (
+  <span className="flex gap-0.5" aria-label={`${count} out of 5 stars`}>
+    {Array.from({ length: count }).map((_, i) => (
+      <Star key={i} className="h-3.5 w-3.5 fill-gold text-gold" />
+    ))}
+  </span>
+);
 
-  return (
-    <section id="testimonials" className="py-20 bg-gradient-to-b from-blue-50 to-white overflow-hidden">
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            What Our <span className="text-primary">Customers Say</span>
+export const Testimonials = () => (
+  <section id="reviews" className="bg-navy-950 py-20 text-white md:py-28">
+    <div className="shell">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.5 }}
+        className="mb-14"
+      >
+        <div className="flex items-baseline gap-4">
+          <span className="inline-flex h-6 min-w-[1.75rem] items-center justify-center rounded-[3px] bg-gold px-1.5 text-[11px] font-bold text-navy-950">
+            ★
+          </span>
+          <h2 className="display text-3xl text-white sm:text-4xl md:text-[2.75rem]">
+            What customers say
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Don&apos;t just take our word for it - hear from our satisfied clients who have experienced our exceptional service.
+        </div>
+        <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-navy-200">
+          {proof.reviewCount} verified reviews, rated {proof.rating.toFixed(1)}{" "}
+          out of 5. Customers rate {business.shortName} highest on
+          professionalism, work quality, and responsiveness.
+        </p>
+        <div className="mt-8 h-px w-full bg-white/15" />
+      </motion.div>
+
+      <div className="grid gap-12 lg:grid-cols-[300px_1fr] lg:gap-16">
+        {/* Rating summary */}
+        <motion.aside
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="lg:sticky lg:top-32 lg:self-start"
+        >
+          <p className="text-5xl font-bold tracking-tight">
+            {proof.rating.toFixed(1)}
           </p>
-          <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-blue-400 mx-auto mt-4" />
-        </motion.div>
+          <div className="mt-3 flex items-center gap-3">
+            <Stars />
+            <span className="text-[12.5px] text-navy-300">
+              {proof.ratingLabel}
+            </span>
+          </div>
 
-        {/* Infinite Scroll Container */}
-        <div className="relative w-full overflow-hidden">
-          <motion.div
-            className="flex gap-4 md:gap-6 w-max"
-            animate={{ x: ["0px", "-2400px"] }}
-            transition={{
-              duration: 40,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-          >
-            {duplicatedTestimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 w-80 md:w-96"
-              >
-                <Card className="h-full bg-white border-2 border-gray-100 hover:border-primary/30 hover:shadow-lg transition-all duration-300 p-6 flex flex-col">
-                  {/* Stars */}
-                  <div className="flex gap-1 mb-4">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-5 h-5 fill-amber-400 text-amber-400"
-                      />
-                    ))}
-                  </div>
-
-                  {/* Review Text */}
-                  <p className="text-foreground/80 text-sm leading-relaxed mb-4 flex-grow line-clamp-4">
-                    &quot;{testimonial.text}&quot;
-                  </p>
-
-                  {/* Service Details */}
-                  <p className="text-xs text-muted-foreground mb-4 pb-4 border-b border-gray-200 line-clamp-2">
-                    {testimonial.service}
-                  </p>
-
-                  {/* Author Info */}
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="font-semibold text-foreground text-sm">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        {testimonial.date}
-                      </p>
-                    </div>
-                    <div className="text-xs bg-blue-100 text-primary px-3 py-1 rounded-full font-semibold">
-                      ★★★★★
-                    </div>
-                  </div>
-                </Card>
+          <div className="mt-6 space-y-1.5">
+            {proof.breakdown.map((row) => (
+              <div key={row.stars} className="flex items-center gap-2.5">
+                <span className="w-3 text-[11px] tabular-nums text-navy-300">
+                  {row.stars}
+                </span>
+                <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/10">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: `${row.percent}%` }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="h-full rounded-full bg-gold"
+                  />
+                </div>
+                <span className="w-8 text-right text-[11px] tabular-nums text-navy-300">
+                  {row.percent}%
+                </span>
               </div>
             ))}
-          </motion.div>
+          </div>
 
-          {/* Fade Overlay Left */}
-          <div className="absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r from-blue-50 to-transparent pointer-events-none z-10" />
-          {/* Fade Overlay Right */}
-          <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-white to-transparent pointer-events-none z-10" />
-        </div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          className="text-center mt-16"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <p className="text-muted-foreground mb-4">
-            Join hundreds of satisfied customers who trust VOLTAMIN ELECTRIC
+          <p className="mt-8 text-[10.5px] font-semibold uppercase tracking-[0.16em] text-gold">
+            Frequently mentioned
           </p>
-          <a
-            href="#contact"
-            className="inline-block px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300 hover:scale-105"
-          >
-            Get Your Free Service Call Today
-          </a>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {proof.mentions.map((mention) => (
+              <span
+                key={mention.word}
+                className="rounded-full border border-white/15 px-2.5 py-1 text-[11.5px] text-navy-200"
+              >
+                {mention.word}
+                <span className="ml-1.5 tabular-nums text-navy-400">
+                  {mention.count}
+                </span>
+              </span>
+            ))}
+          </div>
 
+          <a
+            href={social.thumbtack}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-flex items-center gap-1.5 text-[13px] font-semibold text-gold transition-colors hover:text-gold-300"
+          >
+            Read all {proof.reviewCount} reviews
+            <ArrowUpRight className="h-3.5 w-3.5" />
+          </a>
+        </motion.aside>
+
+        {/* Reviews */}
+        <div className="divide-y divide-white/10 border-t border-white/10">
+          {siteConfig.reviews.map((review, i) => (
+            <motion.article
+              key={review.name}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.45, delay: Math.min(i * 0.06, 0.24) }}
+              className="py-8"
+            >
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
+                <Stars count={review.rating} />
+                <span className="text-[14px] font-semibold text-white">
+                  {review.name}
+                </span>
+                <span className="text-[12px] text-navy-400">
+                  {review.date}
+                </span>
+                <span className="rounded-full border border-gold/30 bg-gold/10 px-2.5 py-0.5 text-[11px] font-medium text-gold-200">
+                  {review.service}
+                </span>
+              </div>
+
+              <p className="mt-4 text-[14.5px] leading-relaxed text-navy-100">
+                {review.body}
+              </p>
+
+              <p className="mt-3 text-[11.5px] text-navy-400">
+                {review.details}
+              </p>
+
+              <div className="mt-5 flex gap-3 border-l-2 border-gold/40 pl-4">
+                <Quote className="mt-0.5 h-3.5 w-3.5 shrink-0 text-gold/60" />
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-gold">
+                    Reply from {business.ownerShort}
+                  </p>
+                  <p className="mt-1.5 text-[13.5px] leading-relaxed text-navy-200">
+                    {review.reply}
+                  </p>
+                </div>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+);
