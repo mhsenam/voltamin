@@ -1,12 +1,14 @@
 const items = [
   "Recessed Lighting",
-  "Panel & Breaker Repair",
+  "Panel Upgrades",
+  "EV Chargers",
   "Switches & Outlets",
   "Ceiling Fans",
-  "240V Circuits",
-  "Chandeliers",
+  "Circuit Breakers",
+  "Smart Home",
+  "Security Cameras",
+  "Rewiring",
   "Troubleshooting",
-  "Remodel Rough-In",
   "GFCI & AFCI",
 ];
 

@@ -9,7 +9,7 @@ const { business } = siteConfig;
 const points = [
   {
     title: "No charge for the visit",
-    body: "I come to your home or business and look at the project in person. Nothing is billed for that visit.",
+    body: "We come to your home or business and look at the project in person. Nothing is billed for that visit.",
   },
   {
     title: "A real number, not a range",
@@ -43,7 +43,7 @@ export const FreeServiceCall = () => (
         </h2>
         <p className="mt-6 max-w-md text-[15px] leading-relaxed text-navy-200">
           Most electricians bill for the trip out before they have quoted
-          anything. I do not. You get an in-person assessment and honest,
+          anything. We do not. You get an in-person assessment and honest,
           upfront pricing so you know exactly what to expect before committing
           to anything.
         </p>

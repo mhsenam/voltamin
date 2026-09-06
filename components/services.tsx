@@ -9,6 +9,9 @@ import {
   Gauge,
   Fan,
   Zap,
+  PlugZap,
+  Home,
+  Camera,
   type LucideIcon,
 } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
@@ -22,6 +25,9 @@ const iconMap: Record<string, LucideIcon> = {
   Gauge,
   Fan,
   Zap,
+  PlugZap,
+  Home,
+  Camera,
 };
 
 const optionGroups: ReadonlyArray<readonly [string, readonly string[]]> = [
@@ -35,8 +41,8 @@ export const Services = () => (
     <div className="shell">
       <SectionHeading
         index="01"
-        title="What I do"
-        description="Seven core services, all performed personally by a licensed C-10 contractor. If your job sits outside this list, call and ask — most electrical work in a home or small commercial space is something I can take on."
+        title="What we do"
+        description={`${siteConfig.services.length} core services, every one of them carried out by a licensed C-10 contractor. If your job sits outside this list, call and ask — most electrical work in a home or small commercial space is something we can take on.`}
       />
 
       <div className="divide-y divide-border border-b border-border">

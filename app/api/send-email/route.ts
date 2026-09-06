@@ -139,7 +139,7 @@ export async function POST(request: NextRequest) {
                 <p style="margin:0;font:700 17px/1.3 Helvetica,Arial,sans-serif;"><a href="tel:${business.phoneRaw}" style="color:${NAVY};text-decoration:none;">${business.phone}</a></p>
                 <p style="margin:22px 0 0;font-size:14px;color:#6B7A90;">
                   ${business.owner} — ${business.name}<br/>
-                  ${business.licenseClass} Licensed &amp; Insured · CSLB #${business.license}
+                  ${business.licenseClass} Licensed, Bonded &amp; Insured · CSLB #${business.license}
                 </p>
               </div>
             </div>

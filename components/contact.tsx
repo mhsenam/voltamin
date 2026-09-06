@@ -96,7 +96,7 @@ export const Contact = () => {
       if (res.ok) {
         setStatus({
           type: "success",
-          message: data.message ?? "Message sent. I will be in touch shortly.",
+          message: data.message ?? "Message sent. We will be in touch shortly.",
         });
         setForm(initialForm);
       } else {
@@ -127,12 +127,12 @@ export const Contact = () => {
         >
           <p className="eyebrow">Free service call</p>
           <h2 className="display mt-6 text-3xl text-navy-950 sm:text-4xl md:text-[2.6rem]">
-            Tell me about
+            Tell us about
             <br />
             the <span className="text-gold-600">project.</span>
           </h2>
           <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted-foreground">
-            Send a short description or a photo of the panel or fixture. I will
+            Send a short description or a photo of the panel or fixture. We will
             come out, assess it in person, and give you a clear estimate at no
             charge and no obligation.
           </p>
@@ -164,7 +164,7 @@ export const Contact = () => {
           </div>
 
           <p className="mt-6 text-[12.5px] leading-relaxed text-muted-foreground">
-            {business.licenseClass} licensed &amp; insured · CSLB #
+            {business.licenseClass} licensed, bonded &amp; insured · CSLB #
             {business.license} · Based in {business.city}, {business.state}
           </p>
         </motion.div>
@@ -312,7 +312,7 @@ export const Contact = () => {
             className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-[5px] bg-gold px-6 py-3.5 text-[14.5px] font-bold text-navy-950 transition-colors hover:bg-gold-400 disabled:cursor-not-allowed disabled:opacity-60"
           >
             <Send className="h-4 w-4" />
-            {sending ? "Sending…" : "Request my free service call"}
+            {sending ? "Sending…" : "Request our free service call"}
           </button>
 
           <p className="mt-3.5 text-center text-[12px] text-muted-foreground">

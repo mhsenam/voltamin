@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Instagram, Facebook, MessageCircle, Phone, Mail } from "lucide-react";
 import { siteConfig } from "@/config/site.config";
 
@@ -22,14 +23,14 @@ export const Footer = () => (
         {/* Brand */}
         <div>
           <div className="flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-[5px] bg-gold">
-              <svg
-                viewBox="0 0 24 24"
-                className="h-4 w-4 fill-navy-950"
-                aria-hidden="true"
-              >
-                <path d="M13.5 2 4 13.2h6.2L9.4 22 20 10.4h-6.6z" />
-              </svg>
+            <span className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-[5px] border border-white/10">
+              <Image
+                src="/images/logo.jpeg"
+                alt=""
+                fill
+                sizes="40px"
+                className="object-cover"
+              />
             </span>
             <span className="text-[15px] font-bold uppercase leading-none tracking-[0.14em] text-white">
               Voltamin
@@ -44,7 +45,17 @@ export const Footer = () => (
             licensed {business.licenseClass} contractor.
           </p>
 
-          <div className="mt-6 flex gap-2">
+          <a
+            href={social.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex items-center gap-2 rounded-[5px] border border-white/15 px-3.5 py-2 text-[13px] font-semibold text-white transition-colors hover:border-gold hover:text-gold"
+          >
+            <Facebook className="h-4 w-4" />
+            Like us on Facebook
+          </a>
+
+          <div className="mt-4 flex gap-2">
             <a
               href={social.instagram}
               target="_blank"
@@ -159,7 +170,7 @@ export const Footer = () => (
         </p>
         <p className="text-navy-400">
           CSLB License #{business.license} · {business.licenseClass}{" "}
-          Classification · Licensed &amp; Insured
+          Classification · Licensed, Bonded &amp; Insured
         </p>
       </div>
     </div>

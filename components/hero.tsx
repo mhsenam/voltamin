@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Phone, Star, ArrowRight, BadgeCheck } from "lucide-react";
 import { siteConfig } from "@/config/site.config";
 
-const { business, proof } = siteConfig;
+const { business, proof, hero } = siteConfig;
 
 const fade = {
   hidden: { opacity: 0, y: 18 },
@@ -32,12 +32,13 @@ export const Hero = () => (
       }}
     />
 
-    <div className="shell relative grid items-center gap-14 py-16 md:py-24 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:py-28">
+    <div className="shell relative py-14 md:py-20 lg:py-24">
       {/* Copy */}
       <motion.div
         initial="hidden"
         animate="show"
         transition={{ staggerChildren: 0.09, delayChildren: 0.05 }}
+        className="max-w-3xl"
       >
         <motion.p
           variants={fade}
@@ -51,11 +52,11 @@ export const Hero = () => (
         <motion.h1
           variants={fade}
           transition={{ duration: 0.6 }}
-          className="display mt-6 text-[2.6rem] sm:text-5xl lg:text-[3.85rem]"
+          className="display mt-6 text-[2.15rem] sm:text-[2.9rem] lg:text-[3.5rem]"
         >
-          A licensed electrician
+          {hero.headline}
           <br />
-          for <span className="text-gold">Orange County.</span>
+          <span className="text-gold">{hero.headlineAccent}</span>
         </motion.h1>
 
         <motion.p
@@ -129,40 +130,29 @@ export const Hero = () => (
           <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3 py-1.5">
             <BadgeCheck className="h-4 w-4 text-gold" />
             <span className="text-[12px] font-semibold text-gold-200">
-              Top Pro {proof.topProYear}
+              Top Pro {proof.topProYears}
             </span>
           </div>
         </motion.div>
       </motion.div>
 
-      {/* Visual */}
+      {/* Cover banner — a wide, self-contained piece of artwork, so it is shown
+          whole from sm up and cropped to its left (logo + headline) on phones. */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.97 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-        className="relative"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut", delay: 0.25 }}
+        className="relative mt-12 overflow-hidden rounded-[6px] border border-white/10 md:mt-16"
       >
-        <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[6px] border border-white/10 sm:aspect-[5/4] lg:aspect-[4/5]">
+        <div className="relative aspect-[4/3] w-full sm:aspect-[2.435/1]">
           <Image
-            src="/images/1366 (22).webp"
-            alt="Feature chandelier installed by Voltamin Electric"
+            src="/images/cover.jpeg"
+            alt={`${business.name} — licensed C-10 electrical contractor for residential, commercial, and industrial work`}
             fill
             priority
-            sizes="(max-width: 1024px) 100vw, 46vw"
-            className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 1280px) 100vw, 1200px"
+            className="object-cover object-left sm:object-contain sm:object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent" />
-        </div>
-
-        {/* Floating credential card */}
-        <div className="absolute -bottom-5 -left-3 max-w-[248px] rounded-[6px] border border-white/10 bg-navy-900/95 p-4 backdrop-blur sm:left-6">
-          <p className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-gold">
-            Free service call
-          </p>
-          <p className="mt-2 text-[13px] leading-snug text-navy-100">
-            I come out, look at the project in person, and give you a clear
-            estimate — at no charge and no obligation.
-          </p>
         </div>
       </motion.div>
     </div>

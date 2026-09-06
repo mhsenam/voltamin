@@ -1,8 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, Phone, ShieldCheck, MapPin } from "lucide-react";
+import {
+  Menu,
+  X,
+  Phone,
+  ShieldCheck,
+  MapPin,
+  Facebook,
+  Instagram,
+} from "lucide-react";
 import { siteConfig } from "@/config/site.config";
 import { cn } from "@/lib/utils";
 
@@ -15,7 +24,7 @@ const links = [
   { label: "FAQ", href: "#faq" },
 ];
 
-const { business } = siteConfig;
+const { business, social } = siteConfig;
 
 /** Thin utility strip above the header — license, area, phone. */
 const UtilityBar = () => (
@@ -24,20 +33,41 @@ const UtilityBar = () => (
       <div className="flex items-center gap-6">
         <span className="inline-flex items-center gap-1.5">
           <ShieldCheck className="h-3.5 w-3.5 text-gold" />
-          CSLB {business.licenseClass} Lic. #{business.license} · Licensed &amp;
-          Insured
+          CSLB {business.licenseClass} Lic. #{business.license} · Licensed,
+          Bonded &amp; Insured
         </span>
         <span className="inline-flex items-center gap-1.5">
           <MapPin className="h-3.5 w-3.5 text-gold" />
           Serving {business.region}, CA
         </span>
       </div>
-      <a
-        href={`tel:${business.phoneRaw}`}
-        className="link-underline font-medium text-white"
-      >
-        {business.phone}
-      </a>
+      <div className="flex items-center gap-4">
+        <a
+          href={social.facebook}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Follow Voltamin Electric on Facebook"
+          className="inline-flex items-center gap-1.5 transition-colors hover:text-gold"
+        >
+          <Facebook className="h-3.5 w-3.5" />
+          Like us on Facebook
+        </a>
+        <a
+          href={social.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Follow Voltamin Electric on Instagram"
+          className="transition-colors hover:text-gold"
+        >
+          <Instagram className="h-3.5 w-3.5" />
+        </a>
+        <a
+          href={`tel:${business.phoneRaw}`}
+          className="link-underline font-medium text-white"
+        >
+          {business.phone}
+        </a>
+      </div>
     </div>
   </div>
 );
@@ -76,14 +106,15 @@ export const Navigation = () => {
         <div className="shell flex h-[68px] items-center justify-between gap-6">
           {/* Wordmark */}
           <a href="#top" className="flex items-center gap-2.5">
-            <span className="flex h-8 w-8 items-center justify-center rounded-[5px] bg-navy-950">
-              <svg
-                viewBox="0 0 24 24"
-                className="h-4 w-4 fill-gold"
-                aria-hidden="true"
-              >
-                <path d="M13.5 2 4 13.2h6.2L9.4 22 20 10.4h-6.6z" />
-              </svg>
+            <span className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-[5px]">
+              <Image
+                src="/images/logo.jpeg"
+                alt=""
+                fill
+                sizes="40px"
+                className="object-cover"
+                priority
+              />
             </span>
             <span className="text-[15px] font-bold uppercase leading-none tracking-[0.14em] text-navy-950">
               Voltamin

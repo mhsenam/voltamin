@@ -33,18 +33,18 @@ export const About = () => (
 
           <div className="mt-5 space-y-4 text-[15px] leading-relaxed text-muted-foreground">
             <p>
-              I started my electrical career as an apprentice working alongside
+              {business.ownerShort} started out as an apprentice working alongside
               certified electricians and licensed contractors, including a
               specialty C-10 licensed electrician and a general B contractor.
-              Through hands-on experience and mentorship I built practical
-              skills in both residential and commercial work — the foundation
-              for what I now do through {business.name}.
+              Hands-on experience and mentorship built the practical skills we
+              bring to both residential and commercial work — the foundation for
+              everything we now do through {business.name}.
             </p>
             <p>
-              Today I run a small, two-person operation out of {business.city}.
+              Today we run a small, two-person operation out of {business.city}.
               Staying small is deliberate: it means the person who quotes your
               job is the person who does it, and the quality does not change
-              depending on which crew turns up. I use laser levels, thermal and
+              depending on which crew turns up. We use laser levels, thermal and
               digital inspection cameras, and proper diagnostic gear so the work
               is precise and your walls and ceilings take as little damage as
               possible.
@@ -72,7 +72,7 @@ export const About = () => (
                   Background checked
                 </p>
                 <p className="mt-0.5 text-[12.5px] text-muted-foreground">
-                  Passed {proof.backgroundCheckDate}
+                  Passed {proof.backgroundCheckYears}
                 </p>
               </div>
             </div>

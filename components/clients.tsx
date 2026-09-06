@@ -12,8 +12,8 @@ export const Clients = () => (
     <div className="shell">
       <SectionHeading
         index="03"
-        title="Who I work with"
-        description="Homeowners, business owners, and property managers across Orange County. That range keeps me sharp on both finish quality and code, and it means most jobs are something I have handled before."
+        title="Who we work with"
+        description="Homeowners, business owners, and property managers across Orange County. That range keeps us sharp on both finish quality and code, and it means most jobs are something we have handled before."
       />
 
       <div className="grid gap-px overflow-hidden rounded-[6px] bg-border sm:grid-cols-3">
