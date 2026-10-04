@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Home, Building2, Factory, type LucideIcon } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { siteConfig } from "@/config/site.config";
@@ -16,16 +13,12 @@ export const Clients = () => (
         description="Homeowners, business owners, and property managers across Orange County. That range keeps us sharp on both finish quality and code, and it means most jobs are something we have handled before."
       />
 
-      <div className="grid gap-px overflow-hidden rounded-[6px] bg-border sm:grid-cols-3">
+      <div data-stagger="cells" className="grid gap-px overflow-hidden rounded-[6px] bg-border sm:grid-cols-3">
         {siteConfig.clients.map((client, i) => {
           const Icon = icons[i];
           return (
-            <motion.div
+            <div
               key={client.title}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: i * 0.08 }}
               className="bg-white p-7 md:p-8"
             >
               <Icon className="h-5 w-5 text-gold-600" />
@@ -35,17 +28,14 @@ export const Clients = () => (
               <p className="mt-3 text-[14px] leading-relaxed text-muted-foreground">
                 {client.body}
               </p>
-            </motion.div>
+            </div>
           );
         })}
       </div>
 
       {/* Payment methods */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
+      <div
+        data-stagger
         className="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-border pt-7"
       >
         <span className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
@@ -59,7 +49,7 @@ export const Clients = () => (
             {method}
           </span>
         ))}
-      </motion.div>
+      </div>
     </div>
   </section>
 );

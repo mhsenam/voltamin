@@ -74,6 +74,9 @@ export default function RootLayout({
     <html lang="en" className={inter.variable}>
       <body className="overflow-x-hidden">
         {children}
+        <noscript>
+          <style>{"[data-hero]{visibility:visible}"}</style>
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

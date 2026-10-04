@@ -14,6 +14,7 @@ import { FAQ } from "@/components/faq";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
 import { MobileCallBar } from "@/components/mobile-call-bar";
+import { Animations } from "@/components/animations";
 import { siteConfig } from "@/config/site.config";
 import { unstable_cache } from "next/cache";
 import { getGoogle, getThumbtack, mergeReviews, type Cache } from "@/lib/reviews";
@@ -63,6 +64,7 @@ export default async function Home() {
       </main>
       <Footer />
       <MobileCallBar />
+      <Animations />
     </>
   );
 }

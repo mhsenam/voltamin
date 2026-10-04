@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { siteConfig } from "@/config/site.config";
 import type { ReviewSource } from "@/lib/reviews";
+import { ClientWords } from "@/components/client-words";
 
 const { proof, business, reviewSources } = siteConfig;
 
@@ -97,26 +98,29 @@ export const Testimonials = ({
   return (
     <section id="reviews" className="bg-navy-950 py-20 text-white md:py-28">
       <div className="shell">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="mb-10"
-        >
+        <div className="mb-10">
           <div className="flex items-baseline gap-4">
-            <span className="inline-flex h-6 min-w-[1.75rem] items-center justify-center rounded-[3px] bg-gold px-1.5 text-[11px] font-bold text-navy-950">
+            <span
+              data-pop
+              className="inline-flex h-6 min-w-[1.75rem] items-center justify-center rounded-[3px] bg-gold px-1.5 text-[11px] font-bold text-navy-950"
+            >
               ★
             </span>
-            <h2 className="display text-3xl text-white sm:text-4xl md:text-[2.75rem]">
+            <h2 data-split className="display text-3xl text-white sm:text-4xl md:text-[2.75rem]">
               What customers say
             </h2>
           </div>
-          <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-navy-200">
+          <p
+            data-reveal
+            data-delay="0.2"
+            className="mt-5 max-w-2xl text-[15px] leading-relaxed text-navy-200"
+          >
             {summary}
           </p>
-          <div className="mt-8 h-px w-full bg-white/15" />
-        </motion.div>
+          <div data-line className="mt-8 h-px w-full bg-white/15" />
+        </div>
+
+        <ClientWords reviews={thumbtack.reviews} />
 
         <div
           role="tablist"

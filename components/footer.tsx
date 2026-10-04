@@ -19,7 +19,10 @@ export const Footer = () => (
   <footer className="border-t border-white/10 bg-navy-950 text-navy-300">
     {/* Extra bottom padding clears the sticky mobile call bar */}
     <div className="shell pb-24 pt-14 md:py-16 lg:pb-16">
-      <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
+      <div
+        data-stagger
+        className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr_1.1fr]"
+      >
         {/* Brand */}
         <div>
           <div className="flex items-center gap-2.5">

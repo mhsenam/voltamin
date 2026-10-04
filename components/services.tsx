@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import {
   Lightbulb,
   Wrench,
@@ -45,16 +42,12 @@ export const Services = () => (
         description={`${siteConfig.services.length} core services, every one of them carried out by a licensed C-10 contractor. If your job sits outside this list, call and ask — most electrical work in a home or small commercial space is something we can take on.`}
       />
 
-      <div className="divide-y divide-border border-b border-border">
+      <div data-stagger="left" className="divide-y divide-border border-b border-border">
         {siteConfig.services.map((service, i) => {
           const Icon = iconMap[service.icon] ?? Zap;
           return (
-            <motion.article
+            <article
               key={service.title}
-              initial={{ opacity: 0, y: 14 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.45, delay: Math.min(i * 0.05, 0.25) }}
               className="group grid gap-4 py-8 md:grid-cols-[64px_1fr_1.35fr] md:gap-8 md:py-9"
             >
               <div className="flex items-center gap-3 md:block">
@@ -85,17 +78,14 @@ export const Services = () => (
                   ))}
                 </ul>
               </div>
-            </motion.article>
+            </article>
           );
         })}
       </div>
 
       {/* Project qualifiers — mirrors the options on the booking profile */}
-      <motion.div
-        initial={{ opacity: 0, y: 14 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.45 }}
+      <div
+        data-stagger
         className="mt-14 grid gap-8 rounded-[6px] bg-navy-50 p-7 sm:grid-cols-3 md:p-9"
       >
         {optionGroups.map(([label, values]) => (
@@ -112,7 +102,7 @@ export const Services = () => (
             </ul>
           </div>
         ))}
-      </motion.div>
+      </div>
     </div>
   </section>
 );

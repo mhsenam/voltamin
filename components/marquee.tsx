@@ -14,8 +14,8 @@ const items = [
 
 /** Continuous keyword ticker between the hero and the first content section. */
 export const Marquee = () => (
-  <div className="pause-on-hover overflow-hidden border-y border-white/10 bg-navy-900 py-3.5">
-    <div className="animate-marquee flex w-max">
+  <div className="overflow-hidden border-y border-white/10 bg-navy-900 py-3.5">
+    <div data-marquee className="flex w-max">
       {[0, 1].map((copy) => (
         <div
           key={copy}

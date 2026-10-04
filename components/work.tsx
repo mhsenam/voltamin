@@ -8,7 +8,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { siteConfig } from "@/config/site.config";
 
 // 1366.webp plus 1366 (1)…(29).webp — the job photos in /public/images
-const photos = [
+export const photos = [
   "/images/1366.webp",
   ...Array.from({ length: 29 }, (_, i) => `/images/1366 (${i + 1}).webp`),
 ];
@@ -55,16 +55,15 @@ export const Work = () => {
           description={`Lighting, outlets, panels, and fans across ${siteConfig.business.region} homes and businesses. Over ${siteConfig.proof.photoCount} job photos documented across ${siteConfig.proof.timesHired} completed jobs — a selection is below.`}
         />
 
-        <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:gap-3 lg:grid-cols-4">
+        <div
+          data-stagger="scale"
+          className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 md:gap-3 lg:grid-cols-4"
+        >
           {visible.map((src, i) => (
-            <motion.button
+            <button
               key={src}
               type="button"
               onClick={() => setActive(photos.indexOf(src))}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.4, delay: Math.min((i % 8) * 0.04, 0.3) }}
               className="group relative aspect-square overflow-hidden rounded-[4px] bg-navy-200"
               aria-label={`Open project photo ${i + 1}`}
             >
@@ -77,7 +76,7 @@ export const Work = () => {
               />
               <span className="absolute inset-0 bg-navy-950/0 transition-colors duration-300 group-hover:bg-navy-950/25" />
               <ArrowUpRight className="absolute right-2.5 top-2.5 h-4 w-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            </motion.button>
+            </button>
           ))}
         </div>
 

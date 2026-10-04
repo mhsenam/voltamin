@@ -119,25 +119,31 @@ export const Contact = () => {
     <section id="contact" className="bg-white py-20 md:py-28">
       <div className="shell grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         {/* Left: pitch + channels */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-        >
-          <p className="eyebrow">Free service call</p>
-          <h2 className="display mt-6 text-3xl text-navy-950 sm:text-4xl md:text-[2.6rem]">
+        <div>
+          <p data-reveal className="eyebrow">
+            Free service call
+          </p>
+          <h2
+            data-split
+            className="display mt-6 text-3xl text-navy-950 sm:text-4xl md:text-[2.6rem]"
+          >
             Tell us about
             <br />
             the <span className="text-gold-600">project.</span>
           </h2>
-          <p className="mt-5 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+          <p
+            data-reveal
+            data-delay="0.2"
+            className="mt-5 max-w-md text-[15px] leading-relaxed text-muted-foreground">
             Send a short description or a photo of the panel or fixture. We will
             come out, assess it in person, and give you a clear estimate at no
             charge and no obligation.
           </p>
 
-          <div className="mt-9 divide-y divide-border border-y border-border">
+          <div
+            data-stagger="left"
+            className="mt-9 divide-y divide-border border-y border-border"
+          >
             {channels.map((channel) => (
               <a
                 key={channel.label}
@@ -167,15 +173,13 @@ export const Contact = () => {
             {business.licenseClass} licensed, bonded &amp; insured · CSLB #
             {business.license} · Based in {business.city}, {business.state}
           </p>
-        </motion.div>
+        </div>
 
         {/* Right: form */}
-        <motion.form
+        <form
           onSubmit={submit}
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          data-reveal
+          data-delay="0.15"
           className="rounded-[6px] border border-border bg-navy-50 p-6 md:p-8"
         >
           <div className="grid gap-4 sm:grid-cols-2">
@@ -189,7 +193,7 @@ export const Contact = () => {
                 required
                 value={form.name}
                 onChange={update}
-                placeholder="Jane Doe"
+                placeholder="Your Name"
                 className={inputClass}
               />
             </div>
@@ -318,7 +322,7 @@ export const Contact = () => {
           <p className="mt-3.5 text-center text-[12px] text-muted-foreground">
             No charge for the visit. No obligation to proceed.
           </p>
-        </motion.form>
+        </form>
       </div>
     </section>
   );

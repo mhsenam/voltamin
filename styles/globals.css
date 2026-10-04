@@ -83,29 +83,16 @@
   }
 }
 
-@layer utilities {
-  .animate-marquee {
-    animation: marquee 38s linear infinite;
-  }
-  .pause-on-hover:hover .animate-marquee {
-    animation-play-state: paused;
-  }
-}
-
-@keyframes marquee {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
+/* Hidden until GSAP builds the hero intro, so the final state never flashes
+   first. Reduced-motion visitors and no-JS visitors see it immediately. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-hero] {
+    visibility: hidden;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-  .animate-marquee {
-    animation: none;
   }
 }
