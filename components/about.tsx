@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Check, ShieldCheck, UserCheck } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { siteConfig } from "@/config/site.config";
@@ -21,12 +18,7 @@ export const About = () => (
 
       <div className="grid gap-14 lg:grid-cols-[1fr_1fr] lg:gap-20">
         {/* Story */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-70px" }}
-          transition={{ duration: 0.5 }}
-        >
+        <div data-reveal>
           <h3 className="text-[21px] font-semibold tracking-[-0.015em] text-navy-950">
             {business.owner} — owner, {business.name}
           </h3>
@@ -52,7 +44,7 @@ export const About = () => (
           </div>
 
           {/* Verification badges */}
-          <div className="mt-8 grid gap-3 sm:grid-cols-2">
+          <div data-stagger className="mt-8 grid gap-3 sm:grid-cols-2">
             <div className="flex items-start gap-3 rounded-[6px] border border-border p-4">
               <ShieldCheck className="mt-0.5 h-[18px] w-[18px] shrink-0 text-gold-600" />
               <div>
@@ -79,10 +71,16 @@ export const About = () => (
           </div>
 
           {/* Numbers */}
-          <div className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-[6px] bg-border sm:grid-cols-4">
+          <div
+            data-stagger="cells"
+            className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-[6px] bg-border sm:grid-cols-4"
+          >
             {facts.map((fact) => (
               <div key={fact.label} className="bg-navy-50 px-4 py-5">
-                <p className="text-2xl font-bold tabular-nums tracking-tight text-navy-950">
+                <p
+                  data-count={fact.value}
+                  className="text-2xl font-bold tabular-nums tracking-tight text-navy-950"
+                >
                   {fact.value}
                 </p>
                 <p className="mt-1 text-[11px] leading-tight text-muted-foreground">
@@ -91,17 +89,14 @@ export const About = () => (
               </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Credential list */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-70px" }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-        >
-          <p className="eyebrow">Training &amp; certification</p>
-          <ul className="mt-6 divide-y divide-border border-y border-border">
+        <div>
+          <p data-reveal className="eyebrow">Training &amp; certification</p>
+          <ul
+            data-stagger="left"
+            className="mt-6 divide-y divide-border border-y border-border">
             {siteConfig.credentials.map((credential, i) => (
               <li
                 key={credential}
@@ -115,7 +110,7 @@ export const About = () => (
               </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
       </div>
     </div>
   </section>

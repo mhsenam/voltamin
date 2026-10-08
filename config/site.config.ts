@@ -237,8 +237,21 @@ export const siteConfig = {
     "San Clemente",
   ],
 
-  // Every written customer review from the booking profile, verbatim. Customer
-  // wording and owner replies are quoted exactly as published.
+  // Where the live reviews come from (see lib/reviews.ts). The two scrape URLs
+  // are never shown to visitors; googleUrl is the only review link on the site.
+  // The #lrd= fragment (the listing's two-part ID) is what makes Google open the
+  // "Google reviews" overlay on load; without it the page has no reviews in it.
+  reviewSources: {
+    thumbtackUrl:
+      "https://www.thumbtack.com/ca/lake-forest/interior-lighting-designer/voltamin-electric/service/452715709538287627",
+    googleSearchUrl:
+      "https://www.google.com/search?q=Voltamin+Electric&kgmid=/g/11nvh9xdwx&hl=en&gl=us#lrd=0x8a68e29bd426aab9:0x96bfeef28e74eb5,1,,,,",
+    googleUrl: "https://share.google/0jIVCK7edxhgSXHAw",
+  },
+
+  // Archive of the written Thumbtack reviews, verbatim as of the last hand copy.
+  // The site shows live reviews and only falls back to these when the live fetch
+  // is unavailable (no API key, or the scrape failed).
   reviews: [
     {
       name: "Zala K.",

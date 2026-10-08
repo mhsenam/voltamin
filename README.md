@@ -26,16 +26,50 @@ npm run dev          # http://localhost:3000
 | `npm run build` | Production build |
 | `npm start` | Serve the production build |
 | `npm run lint` | ESLint |
+| `npm run check:reviews` | Offline checks for the live reviews code |
 
 ### Environment
 
 ```bash
 # .env.local
 RESEND_API_KEY=re_xxxxxxxx
+
+# Live reviews (optional, see below)
+SCRAPINGBEE_API_KEY=xxxxxxxx
+SCRAPINGBEE_PROXY=stealth      # optional: Thumbtack uses the premium proxy (25 credits) by default, stealth is 75
 ```
 
-Only the contact form needs this. Without it the build still succeeds and the page
-renders normally — `/api/send-email` returns a 503 telling the visitor to call instead.
+`RESEND_API_KEY` is only for the contact form. Without it the build still succeeds and the
+page renders normally — `/api/send-email` returns a 503 telling the visitor to call instead.
+
+### Live reviews
+
+The reviews section has Thumbtack and Google tabs, filled on the server by `lib/reviews.ts`
+through ScrapingBee. Only `SCRAPINGBEE_API_KEY` is needed, and it must also be set in the
+Vercel project's environment variables. Results are cached with `unstable_cache`, so a
+visitor is never kept waiting on a scrape: Thumbtack refreshes hourly, Google daily (the
+`HOUR` and `DAY` constants in `lib/reviews.ts`). Once there is a cached result, a refresh that
+fails keeps serving the old one.
+
+- **Thumbtack** runs `lib/thumbtack-extractor.ts` inside the profile page (premium proxy,
+  25 credits a call). It sorts newest first and pages through every review.
+- **Google** loads Google Search with a `#lrd=` fragment, which opens the "Google reviews"
+  overlay and lists every review (Google Maps stops at 5 when signed out). ScrapingBee's
+  Google mode cannot run scripts, so `parseGoogleHtml` reads the returned HTML. It needs the
+  stealth proxy (75 credits a call), and Google sometimes answers with a CAPTCHA anyway. A
+  failed call is not charged and is retried on the next refresh. The `#lrd=` value is the
+  listing's ID in `config/site.config.ts`.
+- **Credits:** at those settings the two sources use roughly 20,000 credits a month, and a
+  deploy that has to refill the cache costs about 100. Slow them down by raising the
+  constants, or the Thumbtack refresh is the big one.
+- With no key, and before the first successful fetch, the Thumbtack tab shows the archived
+  reviews in `siteConfig.reviews` and the Google tab says it is unavailable.
+- Only the reviews section is live. The hero, footer and SEO JSON-LD still read the static
+  `proof` figures. The Thumbtack link was removed on purpose, so the Google listing is the
+  only review link on the site.
+- If Thumbtack or Google change their markup, the extractor or parser returns nothing and
+  the fallbacks above apply. `npm run check:reviews` checks the parsers, and that the
+  Thumbtack extractor still parses and fits in a URL.
 
 ---
 
@@ -158,7 +192,11 @@ voltamin/
 │   ├── section-heading.tsx
 │   └── ui/                       # button, card, badge (currently unused)
 ├── config/site.config.ts         # All site content
-├── lib/utils.ts                  # cn() class merger
+├── lib/
+│   ├── utils.ts                  # cn() class merger
+│   ├── reviews.ts                # Live Thumbtack + Google review services (ScrapingBee)
+│   ├── thumbtack-extractor.ts    # Script run inside the Thumbtack page
+│   └── reviews.check.ts          # npm run check:reviews
 ├── public/images/                # 30 job photos
 ├── styles/globals.css            # Tokens + shared utilities
 └── tailwind.config.ts            # navy / gold scales, fonts
@@ -177,8 +215,9 @@ Open Graph and keyword metadata are generated from `siteConfig.seo`.
 
 ## Deployment
 
-Deploys to Vercel with no configuration beyond setting `RESEND_API_KEY` in the project's
-environment variables.
+Deploys to Vercel with no configuration beyond setting the environment variables above
+(`RESEND_API_KEY`, plus the two review keys to turn on live reviews). The home page sets
+`maxDuration = 60` so the Thumbtack scrape (about 20s) has an explicit time limit.
 
 ```bash
 npm run build && npm start   # verify locally first

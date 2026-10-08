@@ -11,20 +11,19 @@ export const FAQ = () => {
   return (
     <section id="faq" className="bg-navy-50 py-20 md:py-28">
       <div className="shell grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5 }}
-          className="lg:sticky lg:top-32 lg:self-start"
-        >
-          <p className="eyebrow">Common questions</p>
-          <h2 className="display mt-6 text-3xl text-navy-950 sm:text-4xl">
+        <div className="lg:sticky lg:top-32 lg:self-start">
+          <p data-reveal className="eyebrow">
+            Common questions
+          </p>
+          <h2 data-split className="display mt-6 text-3xl text-navy-950 sm:text-4xl">
             Questions
             <br />
             answered
           </h2>
-          <p className="mt-5 text-[14.5px] leading-relaxed text-muted-foreground">
+          <p
+            data-reveal
+            data-delay="0.2"
+            className="mt-5 text-[14.5px] leading-relaxed text-muted-foreground">
             The things customers ask most before booking. Anything not covered
             here, call and ask directly.
           </p>
@@ -34,9 +33,12 @@ export const FAQ = () => {
           >
             {siteConfig.business.phone}
           </a>
-        </motion.div>
+        </div>
 
-        <div className="divide-y divide-navy-200 border-y border-navy-200">
+        <div
+          data-stagger
+          className="divide-y divide-navy-200 border-y border-navy-200"
+        >
           {siteConfig.faqs.map((faq, i) => {
             const isOpen = open === i;
             return (
