@@ -11,6 +11,7 @@ const config = {
   theme: {
     fontFamily: {
       sans: ['var(--font-inter)', 'system-ui', '-apple-system', 'sans-serif'],
+      slab: ['var(--font-slab)', 'Georgia', 'serif'],
     },
     extend: {
       colors: {
@@ -61,6 +62,8 @@ const config = {
           900: '#0D1728',
           950: '#070F1C',
         },
+        // Sampled from the lettering in /images/logo.jpeg
+        logo: '#FCBA00',
         gold: {
           DEFAULT: '#E9A621',
           50: '#FEF8EC',
@@ -93,10 +96,15 @@ const config = {
           '0%': { transform: 'translateY(10px)', opacity: '0' },
           '100%': { transform: 'translateY(0)', opacity: '1' },
         },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-100%)' },
+        },
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in',
         'slide-in': 'slideIn 0.5s ease-out',
+        marquee: 'marquee 240s linear infinite',
       },
     },
   },

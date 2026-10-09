@@ -1,11 +1,19 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Roboto_Slab } from "next/font/google";
 import { siteConfig } from "@/config/site.config";
 import "@/styles/globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+// Closest Google match to the lettering in the logo, for the wordmark only.
+const slab = Roboto_Slab({
+  subsets: ["latin"],
+  weight: "800",
+  variable: "--font-slab",
   display: "swap",
 });
 
@@ -62,7 +70,7 @@ const jsonLd = {
     bestRating: 5,
   },
   hasCredential: `CSLB ${business.licenseClass} License #${business.license}`,
-  sameAs: [social.instagram, social.facebook],
+  sameAs: [social.instagram, social.facebook, social.google],
 };
 
 export default function RootLayout({
@@ -71,7 +79,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en" className={`${inter.variable} ${slab.variable}`}>
       <body className="overflow-x-hidden">
         {children}
         <noscript>

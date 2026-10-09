@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Phone, Star, ArrowRight, BadgeCheck } from "lucide-react";
+import { Phone, Star, BadgeCheck } from "lucide-react";
 import { siteConfig } from "@/config/site.config";
 
 const { business, proof, hero } = siteConfig;
@@ -29,6 +29,24 @@ export const Hero = () => (
     <div data-hero className="shell relative py-14 md:py-20 lg:py-24">
       {/* Copy */}
       <div className="max-w-3xl">
+        {/* The header logo, large, so the brand leads the page */}
+        <div data-reveal className="mb-10 flex items-center gap-4 sm:gap-5">
+          <span className="relative flex h-20 w-20 shrink-0 overflow-hidden rounded-[10px] border border-gold/40 shadow-[0_0_48px_-8px_rgba(233,166,33,0.55)] sm:h-28 sm:w-28">
+            <Image
+              src="/images/logo.jpeg"
+              alt={`${business.name} logo`}
+              fill
+              sizes="112px"
+              className="object-cover"
+              priority
+            />
+          </span>
+          <span className="font-slab text-[30px] uppercase leading-[1.02] tracking-[0.02em] text-logo sm:text-[44px]">
+            Voltamin
+            <span className="block">Electric</span>
+          </span>
+        </div>
+
         <p data-reveal className="eyebrow !text-navy-300">
           {business.licenseClass} Licensed · Lic. #{business.license} ·{" "}
           {business.region}
@@ -59,20 +77,12 @@ export const Hero = () => (
           className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
         >
           <a
-            href="#contact"
-            data-magnetic
-            className="group inline-flex items-center justify-center gap-2 rounded-[5px] bg-gold px-6 py-3.5 text-[14.5px] font-bold text-navy-950 transition-colors hover:bg-gold-400"
-          >
-            Book a free service call
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </a>
-          <a
             href={`tel:${business.phoneRaw}`}
             data-magnetic
-            className="inline-flex items-center justify-center gap-2 rounded-[5px] border border-white/20 px-6 py-3.5 text-[14.5px] font-semibold text-white transition-colors hover:border-white/50"
+            className="inline-flex items-center justify-center gap-2 rounded-[5px] bg-gold px-6 py-3.5 text-[14.5px] font-bold text-navy-950 transition-colors hover:bg-gold-400"
           >
             <Phone className="h-4 w-4" />
-            {business.phone}
+            Call {business.phone}
           </a>
         </div>
 

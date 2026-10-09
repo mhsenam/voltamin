@@ -42,6 +42,12 @@ SCRAPINGBEE_PROXY=stealth      # optional: Thumbtack uses the premium proxy (25 
 `RESEND_API_KEY` is only for the contact form. Without it the build still succeeds and the
 page renders normally — `/api/send-email` returns a 503 telling the visitor to call instead.
 
+The form sends from `noreply@voltaminelectric.com` and `Sam@VoltaminElectric.com`, so
+`voltaminelectric.com` must be verified in Resend (Domains): add the DKIM TXT record
+(`resend._domainkey`) and the `send` MX + SPF TXT records Resend lists to the GoDaddy DNS.
+Until the domain shows "Verified", Resend rejects every send and the form shows
+"Could not send your message".
+
 ### Live reviews
 
 The reviews section has Thumbtack and Google tabs, filled on the server by `lib/reviews.ts`
@@ -81,15 +87,15 @@ from it and hold no hardcoded business facts, so copy changes are a one-file edi
 | Key | Drives |
 | --- | --- |
 | `business` | Name, owner, licence, phone, email, city, tenure |
-| `proof` | Rating, review count, star breakdown, times hired, Top Pro year, keyword chips |
+| `proof` | Rating, review count, times hired, photo count, Top Pro year |
 | `trustBadges` | The five-badge bar under the hero |
 | `services` | The numbered `01`–`07` service list |
 | `projectOptions` | Ceiling height / construction type / property type qualifiers |
 | `process` | The five "How it works" steps |
 | `clients` | Residential / Commercial / Industrial cards |
-| `credentials` | The ten training and certification entries |
-| `serviceAreas` | Service-area grid, footer list, contact-form city dropdown |
-| `reviews` | Customer reviews and the owner's replies |
+| `credentials` | The ten training and certification entries; those with an `image` (scans in `public/certificates`) show in the zoomable certificate gallery |
+| `serviceAreas` | Service-area pills, footer list, contact-form city dropdown |
+| `reviews`, `googleReviews` | Archived Thumbtack and Google reviews, the fallback when the live fetch is unavailable |
 | `faqs` | FAQ accordion |
 | `payments`, `social`, `seo` | Payment chips, social links, metadata |
 
@@ -98,11 +104,11 @@ from it and hold no hardcoded business facts, so copy changes are a one-file edi
 The figures are taken from two live profiles and should be refreshed together:
 
 - **[Thumbtack](https://www.thumbtack.com/ca/lake-forest/interior-lighting-designer/voltamin-electric/service/452715709538287627)**
-  — rating, review count and breakdown, times hired, photo count, Top Pro status,
+  — rating, review count, times hired, photo count, Top Pro status,
   background-check date, licence, employees, payment methods, services, process,
   credentials, reviews, FAQs.
-- **[Facebook](https://www.facebook.com/VoltaminElectric/)** — the service-area city
-  list, tagline, and contact details.
+- **[Facebook](https://www.facebook.com/VoltaminElectric/)** — tagline and contact
+  details. The service-area list was supplied by the owner (2026-10-08).
 
 Both render client-side, so `WebFetch` returns an empty page. Scrape them with a real
 browser (Playwright) and read `document.body.innerText`. On Thumbtack, click every
@@ -128,7 +134,9 @@ the `photos` array. The hero image is set separately in `components/hero.tsx`.
 | # | Component | Notes |
 | --- | --- | --- |
 | | `navigation` | Utility strip (licence, area, phone) + sticky header |
-| | `hero` | Headline, CTAs, rating strip, feature photo |
+| | `hero` | Large logo, headline, call button, rating strip, feature photo |
+| | `testimonials` | Bold rating header, Thumbtack/Google tabs, auto-scrolling review rows |
+| | `socials` | Google, Facebook, Instagram and WhatsApp link cards |
 | | `marquee` | Scrolling service keywords |
 | | `trust-bar` | Five credibility badges |
 | 01 | `services` | Seven services with detail chips + project qualifiers |
@@ -136,12 +144,11 @@ the `photos` array. The hero image is set separately in `components/hero.tsx`.
 | 02 | `process` | Five steps from call to walk-through |
 | 03 | `clients` | Residential / commercial / industrial + payment chips |
 | 04 | `work` | 30-photo gallery with lightbox |
-| 05 | `about` | Owner story, licence verification, credentials |
-| | `testimonials` | Rating summary, keyword chips, reviews with replies |
-| 06 | `service-area` | Ten Orange County cities |
+| 05 | `about` | Owner story, licence verification, zoomable certificate gallery (`certificates`) |
+| 06 | `service-area` | 26 Orange County cities |
 | | `faq` | Eight-question accordion |
 | | `contact` | Contact channels + estimate request form |
-| | `footer` | Brand, nav, areas, contact, licence |
+| | `footer` | Brand, nav, areas, contact, payment methods, licence |
 | | `mobile-call-bar` | Sticky call / estimate bar below `lg` |
 
 `section-heading.tsx` renders the numbered headings shared by the `01`–`06` sections.
@@ -187,7 +194,8 @@ voltamin/
 ├── components/
 │   ├── navigation.tsx  hero.tsx  marquee.tsx  trust-bar.tsx
 │   ├── services.tsx    free-service-call.tsx  process.tsx  clients.tsx
-│   ├── work.tsx        about.tsx  testimonials.tsx  service-area.tsx
+│   ├── work.tsx        about.tsx  certificates.tsx  testimonials.tsx
+│   ├── socials.tsx     service-area.tsx
 │   ├── faq.tsx         contact.tsx  footer.tsx  mobile-call-bar.tsx
 │   ├── section-heading.tsx
 │   └── ui/                       # button, card, badge (currently unused)

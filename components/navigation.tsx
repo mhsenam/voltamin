@@ -16,10 +16,10 @@ import { siteConfig } from "@/config/site.config";
 import { cn } from "@/lib/utils";
 
 const links = [
+  { label: "Reviews", href: "#reviews" },
   { label: "Services", href: "#services" },
   { label: "Process", href: "#process" },
   { label: "Work", href: "#work" },
-  { label: "Reviews", href: "#reviews" },
   { label: "Areas", href: "#areas" },
   { label: "FAQ", href: "#faq" },
 ];
@@ -116,11 +116,9 @@ export const Navigation = () => {
                 priority
               />
             </span>
-            <span className="text-[15px] font-bold uppercase leading-none tracking-[0.14em] text-navy-950">
+            <span className="font-slab text-[16px] uppercase leading-[1.05] tracking-[0.02em] text-logo">
               Voltamin
-              <span className="mt-1 block text-[8.5px] font-semibold tracking-[0.34em] text-muted-foreground">
-                Electric
-              </span>
+              <span className="block">Electric</span>
             </span>
           </a>
 
@@ -149,8 +147,7 @@ export const Navigation = () => {
               href="#contact"
               className="inline-flex items-center whitespace-nowrap rounded-[5px] bg-gold px-3.5 py-2.5 text-[13px] font-bold text-navy-950 transition-colors hover:bg-gold-400 sm:px-4"
             >
-              <span className="sm:hidden">Free Call</span>
-              <span className="hidden sm:inline">Free Service Call</span>
+              Contact Us
             </a>
 
             <button

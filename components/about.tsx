@@ -1,4 +1,5 @@
-import { Check, ShieldCheck, UserCheck } from "lucide-react";
+import { ShieldCheck, UserCheck } from "lucide-react";
+import { Certificates } from "@/components/certificates";
 import { SectionHeading } from "@/components/section-heading";
 import { siteConfig } from "@/config/site.config";
 
@@ -91,26 +92,7 @@ export const About = () => (
           </div>
         </div>
 
-        {/* Credential list */}
-        <div>
-          <p data-reveal className="eyebrow">Training &amp; certification</p>
-          <ul
-            data-stagger="left"
-            className="mt-6 divide-y divide-border border-y border-border">
-            {siteConfig.credentials.map((credential, i) => (
-              <li
-                key={credential}
-                className="flex items-start gap-4 py-3.5 text-[14px] leading-snug text-navy-800"
-              >
-                <span className="mt-0.5 text-[11px] font-semibold tabular-nums text-gold-600">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-gold-600" />
-                <span>{credential}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <Certificates />
       </div>
     </div>
   </section>

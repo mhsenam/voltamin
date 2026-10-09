@@ -13,19 +13,19 @@ export const ServiceArea = () => (
         description={`Based in ${business.city} and working throughout ${business.region}. If your city is not listed below, call and ask — chances are it is still within range.`}
       />
 
-      <div data-stagger="cells" className="grid grid-cols-2 gap-px overflow-hidden rounded-[6px] bg-border sm:grid-cols-3 lg:grid-cols-5">
+      <ul data-stagger className="flex flex-wrap gap-2.5">
         {siteConfig.serviceAreas.map((city) => (
-          <div
+          <li
             key={city}
-            className="group flex items-center gap-2.5 bg-white px-4 py-5 transition-colors hover:bg-navy-50"
+            className="flex items-center gap-2 rounded-full border border-border bg-white px-4 py-2.5 transition-colors hover:border-gold hover:bg-gold/5"
           >
             <MapPin className="h-3.5 w-3.5 shrink-0 text-gold-600" />
             <span className="text-[13.5px] font-medium text-navy-900">
               {city}
             </span>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
 
       <div
         data-reveal

@@ -1,17 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { Instagram, Facebook, MessageCircle, Phone, Mail } from "lucide-react";
+import { Phone, Mail } from "lucide-react";
 import { siteConfig } from "@/config/site.config";
 
-const { business, social, proof } = siteConfig;
+const { business, proof } = siteConfig;
 
 const navLinks = [
+  { label: "Reviews", href: "#reviews" },
   { label: "Services", href: "#services" },
   { label: "How it works", href: "#process" },
   { label: "Recent work", href: "#work" },
   { label: "Credentials", href: "#about" },
-  { label: "Reviews", href: "#reviews" },
   { label: "FAQ", href: "#faq" },
 ];
 
@@ -48,45 +48,6 @@ export const Footer = () => (
             licensed {business.licenseClass} contractor.
           </p>
 
-          <a
-            href={social.facebook}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 inline-flex items-center gap-2 rounded-[5px] border border-white/15 px-3.5 py-2 text-[13px] font-semibold text-white transition-colors hover:border-gold hover:text-gold"
-          >
-            <Facebook className="h-4 w-4" />
-            Like us on Facebook
-          </a>
-
-          <div className="mt-4 flex gap-2">
-            <a
-              href={social.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="flex h-9 w-9 items-center justify-center rounded-[5px] border border-white/10 transition-colors hover:border-gold hover:text-gold"
-            >
-              <Instagram className="h-4 w-4" />
-            </a>
-            <a
-              href={social.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="flex h-9 w-9 items-center justify-center rounded-[5px] border border-white/10 transition-colors hover:border-gold hover:text-gold"
-            >
-              <Facebook className="h-4 w-4" />
-            </a>
-            <a
-              href={social.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className="flex h-9 w-9 items-center justify-center rounded-[5px] border border-white/10 transition-colors hover:border-gold hover:text-gold"
-            >
-              <MessageCircle className="h-4 w-4" />
-            </a>
-          </div>
         </div>
 
         {/* Nav */}
@@ -113,10 +74,10 @@ export const Footer = () => (
           <h3 className="text-[10.5px] font-semibold uppercase tracking-[0.16em] text-white">
             Service areas
           </h3>
-          <ul className="mt-4 space-y-2.5">
+          <ul className="mt-4 columns-2 gap-4 text-[12.5px]">
             {siteConfig.serviceAreas.map((city) => (
-              <li key={city} className="text-[13.5px]">
-                {city}, CA
+              <li key={city} className="mb-2 break-inside-avoid">
+                {city}
               </li>
             ))}
           </ul>
@@ -154,7 +115,10 @@ export const Footer = () => (
             </li>
           </ul>
 
-          <div className="mt-5 flex flex-wrap gap-1.5">
+          <h3 className="mt-7 text-[10.5px] font-semibold uppercase tracking-[0.16em] text-white">
+            Payment methods
+          </h3>
+          <div className="mt-3 flex flex-wrap gap-1.5">
             {siteConfig.payments.map((method) => (
               <span
                 key={method}

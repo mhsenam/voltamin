@@ -9,6 +9,7 @@ import { Clients } from "@/components/clients";
 import { Work } from "@/components/work";
 import { About } from "@/components/about";
 import { Testimonials } from "@/components/testimonials";
+import { Socials } from "@/components/socials";
 import { ServiceArea } from "@/components/service-area";
 import { FAQ } from "@/components/faq";
 import { Contact } from "@/components/contact";
@@ -32,8 +33,8 @@ const cache: Cache = (key, seconds, run) =>
   unstable_cache(run, [key], { revalidate: seconds })();
 
 export default async function Home() {
-  const { proof, reviews, reviewSources } = siteConfig;
-  const [thumbtackLive, google] = await Promise.all([
+  const { proof, reviews, googleReviews, reviewSources } = siteConfig;
+  const [thumbtackLive, googleLive] = await Promise.all([
     getThumbtack(reviewSources.thumbtackUrl, cache),
     getGoogle(reviewSources.googleSearchUrl, cache),
   ]);
@@ -44,11 +45,19 @@ export default async function Home() {
     reviews: mergeReviews(thumbtackLive?.reviews ?? [], reviews),
   };
 
+  const google = {
+    rating: googleLive?.rating ?? googleReviews.rating,
+    count: googleLive?.count ?? googleReviews.count,
+    reviews: mergeReviews(googleLive?.reviews ?? [], googleReviews.reviews),
+  };
+
   return (
     <>
       <Navigation />
       <main>
         <Hero />
+        <Testimonials thumbtack={thumbtack} google={google} />
+        <Socials />
         <Marquee />
         <TrustBar />
         <Services />
@@ -57,7 +66,6 @@ export default async function Home() {
         <Clients />
         <Work />
         <About />
-        <Testimonials thumbtack={thumbtack} google={google} />
         <ServiceArea />
         <FAQ />
         <Contact />
