@@ -225,7 +225,7 @@ const Viewer = ({
       onClose={() => onIndex(null)}
       onKeyDown={onKeyDown}
       aria-labelledby="certificate-title"
-      className="m-0 h-[100dvh] max-h-none w-screen max-w-none bg-transparent p-0 text-white backdrop:bg-navy-950/90 backdrop:backdrop-blur-sm"
+      className="m-0 h-full max-h-none w-full max-w-none bg-transparent p-0 text-white backdrop:bg-navy-950/90 backdrop:backdrop-blur-sm"
     >
       {cert && (
         <div className="flex h-full flex-col">
@@ -304,7 +304,7 @@ const Viewer = ({
                     "max-w-none select-none rounded-md shadow-2xl",
                     zoom > 1
                       ? "h-auto"
-                      : "max-h-[calc(100dvh-6rem)] w-auto max-w-full cursor-zoom-in"
+                      : "max-h-[calc(100dvh/var(--page-zoom)-6rem)] w-auto max-w-full cursor-zoom-in"
                   )}
                 />
               </div>

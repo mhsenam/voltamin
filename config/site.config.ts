@@ -23,7 +23,6 @@ export const siteConfig = {
     url: "https://voltaminelectric.com",
     priceRange: "$$",
     yearsInBusiness: 6,
-    employees: 2,
     /** Licence wording used across the header, footer, and contact block. */
     licenseLine: "C-10 Licensed, Bonded & Insured",
     tagline:
@@ -34,14 +33,13 @@ export const siteConfig = {
 
   hero: {
     headline: "California Licensed Electrical Contractor",
-    headlineAccent: "(in Orange County)",
+    headlineAccent: "(serving in Orange County)",
   },
 
   proof: {
     rating: 5.0,
     ratingLabel: "Exceptional",
     reviewCount: 98,
-    timesHired: 77,
     photoCount: 334,
     topProYears: "2025 & 2026",
     backgroundCheckYears: "2025 & 2026",
@@ -286,8 +284,9 @@ export const siteConfig = {
     googleUrl: "https://share.google/0jIVCK7edxhgSXHAw",
   },
 
-  // Archive of the written Thumbtack reviews, verbatim as of 2026-10-08
-  // (scraped with Playwright, newest first). The site shows live reviews and
+  // Archive of the written Thumbtack reviews, verbatim as of 2026-10-08 and
+  // still current on 2026-10-14 (scraped with Playwright, newest first). The
+  // site shows live reviews and
   // only falls back to these when the live fetch is unavailable (no API key,
   // or the scrape failed). Dates under three weeks old were shown relative
   // on Thumbtack and are approximate.
@@ -1176,12 +1175,33 @@ export const siteConfig = {
     },
   ],
 
-  // Archive of the Google reviews as of 2026-10-08, same fallback role as
+  // Archive of the Google reviews as of 2026-10-14, same fallback role as
   // `reviews`. Google only shows relative dates, so these are approximate.
   googleReviews: {
     rating: 5,
-    count: 18,
+    count: 21,
     reviews: [
+      {
+        name: "John Stifter",
+        date: "Oct 12, 2026",
+        rating: 5,
+        body: "I first hired Sam at Voltamin Electric to install my Tesla charger, and he did a fabulous job: clean, professional work and a smooth process from start to finish. I was so happy with it that I brought him back to install and mount three light fixtures, including a bathroom sconce and two outdoor sconces. They look great.\n\nSam is knowledgeable, very responsive, and reasonably priced. He also sent photos and a clear update when the job was done, and made sure the house was locked up before he left. That kind of care makes it easy to trust him in your home. I'll definitely call Voltamin Electric for any future electrical work and highly recommend Sam!",
+        reply: "Dear Mr. Stifter, I sincerely appreciate your kind words and continued trust in Voltamin Electric. It was a pleasure installing your Tesla charger and returning for your lighting project. I’m glad you’re happy with the results and appreciated the care taken with your home. I look forward to helping you again!\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "Amir Khalighi",
+        date: "Oct 10, 2026",
+        rating: 5,
+        body: "We had an excellent experience with Saeid from Voltamin Electric! He installed backyard lighting, motion-sensor floodlights, an outdoor GFCI outlet, and security camera lighting above our garage.\n\nHis attention to detail was outstanding. He ran all the wiring neatly through conduit and even used a laser level to ensure everything was perfectly straight and aligned.\n\nSaeid was extremely knowledgeable, professional, organized, and meticulous. His workmanship was exceptionally clean and precise.\n\nHighly recommend Voltamin Electric for anyone looking for quality electrical work!",
+        reply: "Amir, I sincerely appreciate your thoughtful review and your trust in Voltamin Electric! It was a pleasure working on your outdoor lighting, motion-sensor floodlights, GFCI outlet, and security lighting. I'm especially glad you noticed the attention to detail, precise conduit installation, and clean workmanship. Your recommendation truly means a lot!\n\nBest regards,\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "Abbas Afrasiabi",
+        date: "Oct 10, 2026",
+        rating: 5,
+        body: "Saeed, work with us for a long time. We have a rental and also he work for our residential. He’s very punctual, very knowledgeable, and honest. I recommend him to all my family and everybody.",
+        reply: "Abbas, I sincerely appreciate your kind words and your continued trust over the years. It has been a pleasure helping you with the electrical needs of both your rental property and your home. Your recognition of my punctuality, knowledge, and honesty means a great deal to me. Thank you for your loyalty and for recommending my services to your family and friends. I look forward to being of service whenever you need me.\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
       {
         name: "mikko",
         date: "Oct 8, 2026",

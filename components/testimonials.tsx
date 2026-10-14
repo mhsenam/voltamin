@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site.config";
 import type { Review, ReviewSource } from "@/lib/reviews";
 import { cn } from "@/lib/utils";
 
-const { proof, reviewSources } = siteConfig;
+const { business, proof, reviewSources } = siteConfig;
 
 const TABS = [
   { id: "thumbtack", label: "Thumbtack" },
@@ -27,7 +27,7 @@ const Stars = ({ count = 5, className }: { count?: number; className?: string })
         key={i}
         className={cn(
           className ?? "h-4 w-4",
-          i < count ? "fill-gold text-gold" : "text-navy-200"
+          i < count ? "fill-gold text-gold" : "text-navy-600"
         )}
       />
     ))}
@@ -35,24 +35,24 @@ const Stars = ({ count = 5, className }: { count?: number; className?: string })
 );
 
 const Card = ({ review }: { review: Review }) => (
-  <article className="flex w-[300px] shrink-0 flex-col rounded-2xl border border-border bg-white p-6 shadow-[0_12px_32px_-20px_rgba(13,23,40,0.35)] sm:w-[370px]">
+  <article className="flex w-[300px] shrink-0 flex-col rounded-2xl border border-navy-800 bg-navy-950 p-6 shadow-[0_12px_32px_-20px_rgba(13,23,40,0.6)] sm:w-[370px]">
     <div className="flex items-center justify-between gap-3">
       <Stars count={review.rating} />
-      <span className="text-[11.5px] text-muted-foreground">{review.date}</span>
+      <span className="text-[11.5px] text-navy-300">{review.date}</span>
     </div>
-    <p className="mt-4 line-clamp-6 flex-1 text-[14.5px] leading-relaxed text-navy-800">
+    <p className="mt-4 line-clamp-6 flex-1 text-[14.5px] leading-relaxed text-navy-100">
       “{review.body}”
     </p>
-    <div className="mt-5 flex items-center gap-3 border-t border-border pt-4">
-      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-navy-950 text-[15px] font-bold text-gold">
+    <div className="mt-5 flex items-center gap-3 border-t border-white/10 pt-4">
+      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-gold text-[15px] font-bold text-navy-950">
         {review.name.charAt(0).toUpperCase()}
       </span>
       <span className="min-w-0">
-        <span className="block truncate text-[14px] font-bold text-navy-950">
+        <span className="block truncate text-[14px] font-bold text-white">
           {review.name}
         </span>
         {review.service && (
-          <span className="block truncate text-[12px] text-muted-foreground">
+          <span className="block truncate text-[12px] text-navy-300">
             {review.service}
           </span>
         )}
@@ -140,7 +140,7 @@ export const Testimonials = ({
             >
               Orange County
               <br />
-              <span className="text-gold-600">trusts Sam.</span>
+              <span className="text-gold-600">trusts {business.name}.</span>
             </h2>
             <div data-reveal data-delay="0.2" className="mt-7 flex items-center gap-5">
               <span className="text-7xl font-extrabold tabular-nums text-navy-950">
@@ -217,13 +217,14 @@ export const Testimonials = ({
       </div>
 
       <div
+        key={tab}
         role="tabpanel"
         id="reviews-panel"
         aria-labelledby={`reviews-tab-${tab}`}
-        className="relative mt-12"
+        className="relative mt-12 duration-700 animate-in fade-in slide-in-from-bottom-6 motion-reduce:animate-none"
       >
         {rows.map((row, i) => (
-          <Row key={`${tab}-${i}`} reviews={row} reverse={i === 1} />
+          <Row key={i} reviews={row} reverse={i === 1} />
         ))}
       </div>
 

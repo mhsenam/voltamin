@@ -96,3 +96,28 @@
     scroll-behavior: auto;
   }
 }
+
+/* The layout is sized in px for laptop-class screens, so on iMac-class
+   displays it sat in a narrow strip. Scale the whole page up instead.
+   vw/vh units are scaled too, so divide them by --page-zoom (or use %). */
+:root {
+  --page-zoom: 1;
+}
+@media (min-width: 1800px) {
+  html {
+    --page-zoom: 1.2;
+    zoom: var(--page-zoom);
+  }
+}
+@media (min-width: 2200px) {
+  html {
+    --page-zoom: 1.4;
+    zoom: var(--page-zoom);
+  }
+}
+@media (min-width: 2600px) {
+  html {
+    --page-zoom: 1.6;
+    zoom: var(--page-zoom);
+  }
+}

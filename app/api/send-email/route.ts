@@ -38,6 +38,7 @@ export async function POST(request: NextRequest) {
       phone = "",
       city = "",
       service = "",
+      time = "",
       message = "",
     } = body ?? {};
 
@@ -65,6 +66,7 @@ export async function POST(request: NextRequest) {
       phone: escapeHtml(String(phone)),
       city: escapeHtml(String(city)),
       service: escapeHtml(String(service)),
+      time: escapeHtml(String(time)),
       message: escapeHtml(String(message)),
     };
 
@@ -93,6 +95,7 @@ export async function POST(request: NextRequest) {
                 ${safe.phone ? row("Phone", `<a href="tel:${safe.phone}" style="color:${NAVY};">${safe.phone}</a>`) : ""}
                 ${safe.service ? row("Service", safe.service) : ""}
                 ${safe.city ? row("City", safe.city) : ""}
+                ${safe.time ? row("Best time", safe.time) : ""}
                 ${row("Received", new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" }))}
               </table>
 

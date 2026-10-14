@@ -52,7 +52,7 @@ export const Work = () => {
         <SectionHeading
           index="04"
           title="Recent work"
-          description={`Lighting, outlets, panels, and fans across ${siteConfig.business.region} homes and businesses. Over ${siteConfig.proof.photoCount} job photos documented across ${siteConfig.proof.timesHired} completed jobs — a selection is below.`}
+          description={`Lighting, outlets, panels, and fans across ${siteConfig.business.region} homes and businesses. Over ${siteConfig.proof.photoCount} job photos documented — a selection is below.`}
         />
 
         <div
@@ -133,7 +133,7 @@ export const Work = () => {
               initial={{ opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.25 }}
-              className="relative h-[76vh] w-full max-w-4xl"
+              className="relative h-[76%] w-full max-w-4xl"
               onClick={(e) => e.stopPropagation()}
             >
               <Image

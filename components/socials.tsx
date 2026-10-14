@@ -3,7 +3,7 @@ import { siteConfig } from "@/config/site.config";
 
 const { social, business } = siteConfig;
 
-const GoogleG = ({ className }: { className?: string }) => (
+export const GoogleG = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 48 48" className={className} aria-hidden>
     <path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z" />
     <path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z" />
@@ -23,13 +23,13 @@ const channels = [
     hover: "hover:border-[#4285F4]",
   },
   {
-    name: "Facebook",
-    action: "Like our page",
-    detail: social.facebookHandle,
-    href: social.facebook,
-    tile: "bg-[#1877F2]",
-    icon: <Facebook className="h-6 w-6 fill-white text-white" />,
-    hover: "hover:border-[#1877F2]",
+    name: "WhatsApp",
+    action: "Message us",
+    detail: business.phone,
+    href: social.whatsapp,
+    tile: "bg-[#25D366]",
+    icon: <MessageCircle className="h-6 w-6 fill-white text-white" />,
+    hover: "hover:border-[#25D366]",
   },
   {
     name: "Instagram",
@@ -41,13 +41,13 @@ const channels = [
     hover: "hover:border-[#E1306C]",
   },
   {
-    name: "WhatsApp",
-    action: "Message us",
-    detail: business.phone,
-    href: social.whatsapp,
-    tile: "bg-[#25D366]",
-    icon: <MessageCircle className="h-6 w-6 fill-white text-white" />,
-    hover: "hover:border-[#25D366]",
+    name: "Facebook",
+    action: "Like our page",
+    detail: social.facebookHandle,
+    href: social.facebook,
+    tile: "bg-[#1877F2]",
+    icon: <Facebook className="h-6 w-6 fill-white text-white" />,
+    hover: "hover:border-[#1877F2]",
   },
 ];
 

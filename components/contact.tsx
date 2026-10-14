@@ -28,8 +28,15 @@ const initialForm = {
   phone: "",
   city: "",
   service: "",
+  time: "",
   message: "",
 };
+
+// Hourly slots, 8 AM to 6 PM, for the "best time to reach you" picker.
+const times = Array.from({ length: 11 }, (_, i) => {
+  const hour = 8 + i;
+  return `${hour % 12 || 12}:00 ${hour < 12 ? "AM" : "PM"}`;
+});
 
 const channels = [
   {
@@ -273,6 +280,25 @@ export const Contact = () => {
                 </SelectContent>
               </Select>
             </div>
+          </div>
+
+          <div className="mt-4">
+            <label htmlFor="time" className={labelClass}>
+              Best time to reach you
+            </label>
+            <Select value={form.time} onValueChange={setField("time")}>
+              <SelectTrigger id="time" aria-label="Best time to reach you">
+                <SelectValue placeholder="Select a time" />
+              </SelectTrigger>
+              <SelectContent>
+                {times.map((time) => (
+                  <SelectItem key={time} value={time}>
+                    {time}
+                  </SelectItem>
+                ))}
+                <SelectItem value="Any time">Any time</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="mt-4">

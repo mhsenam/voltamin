@@ -55,7 +55,7 @@ export default async function Home() {
     <>
       <Navigation />
       <main>
-        <Hero />
+        <Hero thumbtack={thumbtack} google={google} />
         <Testimonials thumbtack={thumbtack} google={google} />
         <Socials />
         <Marquee />

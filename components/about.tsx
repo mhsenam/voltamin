@@ -7,8 +7,6 @@ const { business, proof } = siteConfig;
 
 const facts = [
   { label: "Years in business", value: `${business.yearsInBusiness}` },
-  { label: "Jobs completed", value: `${proof.timesHired}` },
-  { label: "Team size", value: `${business.employees}` },
   { label: "Average rating", value: proof.rating.toFixed(1) },
 ];
 
@@ -74,7 +72,7 @@ export const About = () => (
           {/* Numbers */}
           <div
             data-stagger="cells"
-            className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-[6px] bg-border sm:grid-cols-4"
+            className="mt-8 grid grid-cols-2 gap-px overflow-hidden rounded-[6px] bg-border"
           >
             {facts.map((fact) => (
               <div key={fact.label} className="bg-navy-50 px-4 py-5">
