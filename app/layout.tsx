@@ -70,7 +70,7 @@ const jsonLd = {
     bestRating: 5,
   },
   hasCredential: `CSLB ${business.licenseClass} License #${business.license}`,
-  sameAs: [social.instagram, social.facebook, social.google],
+  sameAs: [social.instagram, social.facebook, social.google, social.yelp],
 };
 
 export default function RootLayout({

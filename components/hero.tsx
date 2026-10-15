@@ -99,9 +99,9 @@ export const Hero = ({
             <a
               href={`tel:${business.phoneRaw}`}
               data-magnetic
-              className="inline-flex items-center justify-center gap-2 rounded-[5px] bg-gold px-6 py-3.5 text-[14.5px] font-bold text-navy-950 transition-colors hover:bg-gold-400"
+              className="inline-flex items-center justify-center gap-2.5 rounded-[5px] bg-gold px-7 py-4 text-[17px] font-bold text-navy-950 transition-colors hover:bg-gold-400 md:text-[19px]"
             >
-              <Phone className="h-4 w-4" />
+              <Phone className="h-5 w-5" />
               Call {business.phone}
             </a>
           </div>

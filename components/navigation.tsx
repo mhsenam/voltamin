@@ -9,7 +9,6 @@ import {
   Phone,
   ShieldCheck,
   MapPin,
-  Facebook,
   Instagram,
 } from "lucide-react";
 import { siteConfig } from "@/config/site.config";
@@ -29,7 +28,7 @@ const { business, social } = siteConfig;
 /** Thin utility strip above the header — license, area, phone. */
 const UtilityBar = () => (
   <div className="hidden border-b border-white/10 bg-navy-950 text-navy-200 lg:block">
-    <div className="shell flex h-9 items-center justify-between text-[11.5px] tracking-wide">
+    <div className="shell flex h-9 items-center justify-between text-[12.5px] tracking-wide">
       <div className="flex items-center gap-6">
         <span className="inline-flex items-center gap-1.5">
           <ShieldCheck className="h-3.5 w-3.5 text-gold" />
@@ -43,16 +42,6 @@ const UtilityBar = () => (
       </div>
       <div className="flex items-center gap-4">
         <a
-          href={social.facebook}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Follow Voltamin Electric on Facebook"
-          className="inline-flex items-center gap-1.5 transition-colors hover:text-gold"
-        >
-          <Facebook className="h-3.5 w-3.5" />
-          Like us on Facebook
-        </a>
-        <a
           href={social.instagram}
           target="_blank"
           rel="noopener noreferrer"
@@ -63,7 +52,7 @@ const UtilityBar = () => (
         </a>
         <a
           href={`tel:${business.phoneRaw}`}
-          className="link-underline font-medium text-white"
+          className="link-underline text-[14px] font-semibold text-white"
         >
           {business.phone}
         </a>
@@ -99,24 +88,24 @@ export const Navigation = () => {
         className={cn(
           "border-b transition-colors duration-300",
           scrolled
-            ? "border-border bg-white/90 backdrop-blur-md"
-            : "border-transparent bg-white"
+            ? "border-white/10 bg-navy-900/90 backdrop-blur-md"
+            : "border-white/10 bg-navy-900"
         )}
       >
-        <div className="shell flex h-[68px] items-center justify-between gap-6">
+        <div className="shell flex h-[76px] items-center justify-between gap-6">
           {/* Wordmark */}
           <a href="#top" className="flex items-center gap-2.5">
-            <span className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-[5px]">
+            <span className="relative flex h-11 w-11 shrink-0 overflow-hidden rounded-[5px]">
               <Image
                 src="/images/logo.jpeg"
                 alt=""
                 fill
-                sizes="40px"
+                sizes="44px"
                 className="object-cover"
                 priority
               />
             </span>
-            <span className="font-slab text-[16px] uppercase leading-[1.05] tracking-[0.02em] text-logo">
+            <span className="font-slab text-[18px] uppercase leading-[1.05] tracking-[0.02em] text-logo">
               Voltamin
               <span className="block">Electric</span>
             </span>
@@ -128,7 +117,7 @@ export const Navigation = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className="link-underline text-[13.5px] font-medium text-navy-700 transition-colors hover:text-navy-950"
+                className="link-underline text-[15.5px] font-medium text-navy-100 transition-colors hover:text-gold"
               >
                 {link.label}
               </a>
@@ -138,14 +127,14 @@ export const Navigation = () => {
           <div className="flex items-center gap-2.5">
             <a
               href={`tel:${business.phoneRaw}`}
-              className="hidden items-center gap-2 rounded-[5px] border border-border px-3.5 py-2.5 text-[13px] font-semibold text-navy-950 transition-colors hover:border-navy-950 sm:inline-flex"
+              className="hidden items-center gap-2 rounded-[5px] border border-white/25 px-4 py-2.5 text-[16px] font-semibold text-white transition-colors hover:border-gold hover:text-gold sm:inline-flex"
             >
-              <Phone className="h-3.5 w-3.5" />
+              <Phone className="h-4 w-4" />
               {business.phone}
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center whitespace-nowrap rounded-[5px] bg-gold px-3.5 py-2.5 text-[13px] font-bold text-navy-950 transition-colors hover:bg-gold-400 sm:px-4"
+              className="inline-flex items-center whitespace-nowrap rounded-[5px] bg-gold px-3.5 py-2.5 text-[14.5px] font-bold text-navy-950 transition-colors hover:bg-gold-400 sm:px-4"
             >
               Contact Us
             </a>
@@ -155,7 +144,7 @@ export const Navigation = () => {
               aria-label={open ? "Close menu" : "Open menu"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
-              className="-mr-1 p-2 lg:hidden"
+              className="-mr-1 p-2 text-white lg:hidden"
             >
               {open ? (
                 <X className="h-5 w-5" />
@@ -175,7 +164,7 @@ export const Navigation = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="border-b border-border bg-white lg:hidden"
+            className="border-b border-white/10 bg-navy-900 lg:hidden"
           >
             <div className="shell flex flex-col py-2">
               {links.map((link) => (
@@ -183,14 +172,14 @@ export const Navigation = () => {
                   key={link.label}
                   href={link.href}
                   onClick={() => setOpen(false)}
-                  className="border-b border-border py-3.5 text-[15px] font-medium text-navy-800 last:border-0"
+                  className="border-b border-white/10 py-3.5 text-[16px] font-medium text-navy-100 last:border-0"
                 >
                   {link.label}
                 </a>
               ))}
               <a
                 href={`tel:${business.phoneRaw}`}
-                className="mt-3 mb-3 inline-flex items-center justify-center gap-2 rounded-[5px] bg-navy-950 py-3 text-sm font-semibold text-white"
+                className="mt-3 mb-3 inline-flex items-center justify-center gap-2 rounded-[5px] bg-gold py-3 text-[16px] font-bold text-navy-950"
               >
                 <Phone className="h-4 w-4" />
                 Call {business.phone}

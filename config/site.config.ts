@@ -33,7 +33,7 @@ export const siteConfig = {
 
   hero: {
     headline: "California Licensed Electrical Contractor",
-    headlineAccent: "(serving in Orange County)",
+    headlineAccent: "Serving Orange County",
   },
 
   proof: {
@@ -52,6 +52,7 @@ export const siteConfig = {
     facebookHandle: "@VoltaminElectric",
     whatsapp: "https://wa.me/18186992255",
     google: "https://share.google/0jIVCK7edxhgSXHAw",
+    yelp: "https://www.yelp.com/biz/voltamin-electric-lake-forest",
   },
 
   payments: ["Cash", "Check", "Credit card", "Venmo", "Zelle"],

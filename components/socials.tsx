@@ -1,4 +1,4 @@
-import { ArrowUpRight, Facebook, Instagram, MessageCircle } from "lucide-react";
+import { ArrowUpRight, Facebook, Instagram, MessageCircle, Star } from "lucide-react";
 import { siteConfig } from "@/config/site.config";
 
 const { social, business } = siteConfig;
@@ -49,6 +49,15 @@ const channels = [
     icon: <Facebook className="h-6 w-6 fill-white text-white" />,
     hover: "hover:border-[#1877F2]",
   },
+  {
+    name: "Yelp",
+    action: "Read our reviews",
+    detail: "Voltamin Electric",
+    href: social.yelp,
+    tile: "bg-[#D32323]",
+    icon: <Star className="h-6 w-6 fill-white text-white" />,
+    hover: "hover:border-[#D32323]",
+  },
 ];
 
 /** Big, branded links to every channel, right after the reviews. */
@@ -73,7 +82,7 @@ export const Socials = () => (
         </p>
       </div>
 
-      <div data-stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div data-stagger className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {channels.map((c) => (
           <a
             key={c.name}
