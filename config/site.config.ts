@@ -32,8 +32,9 @@ export const siteConfig = {
   },
 
   hero: {
-    headline: "California Licensed Electrical Contractor",
-    headlineAccent: "(serving in Orange County)",
+    eyebrow: "Serving Orange County, CA · Licensed, Bonded & Insured",
+    headline: "Electrical Contractor",
+    headlineAccent: "California C-10 Licensed Electrician",
   },
 
   proof: {
@@ -1377,7 +1378,7 @@ export const siteConfig = {
 
   seo: {
     title:
-      "Voltamin Electric | Licensed C-10 Electrician in Orange County, CA",
+      "Voltamin Electric | Electrical Contractor in Orange County, CA",
     description:
       "California licensed, bonded and insured C-10 electrical contractor serving Orange County. Panel upgrades, EV chargers, lighting, outlets, wiring, and fans. 5.0 rating from 98 reviews. Free service call.",
     keywords: [

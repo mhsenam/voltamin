@@ -67,20 +67,36 @@ export const Hero = ({
             </span>
           </div>
 
-          <p data-reveal className="eyebrow !text-navy-300">
-            {business.licenseClass} Licensed · Lic. #{business.license} ·{" "}
-            {business.region}
+          <p data-reveal className="eyebrow !text-navy-200">
+            {hero.eyebrow}
           </p>
 
           <h1
             data-split
             data-delay="0.1"
-            className="display mt-6 text-[2.15rem] sm:text-[2.9rem] lg:text-[3.5rem]"
+            className="display mt-6 text-[2.25rem] sm:text-[3rem] lg:text-[3.5rem]"
           >
-            {hero.headline}
-            <br />
-            <span className="text-gold">{hero.headlineAccent}</span>
+            {hero.headline}{" "}
+            <span className="mt-2 block text-[1.4rem] text-gold sm:text-[1.95rem] lg:text-[2.3rem]">
+              {hero.headlineAccent}
+            </span>
           </h1>
+
+          {/* License number */}
+          <div data-reveal data-delay="0.3" className="mt-4">
+            <a
+              href="#about"
+              className="inline-flex items-center gap-2.5 rounded-[5px] border border-gold/35 bg-gold/10 px-3.5 py-1.5 text-[15px] font-bold tracking-[0.08em] text-white transition-colors hover:border-gold hover:bg-gold/15 sm:text-[17px]"
+            >
+              <ShieldCheck className="h-[18px] w-[18px] shrink-0 text-gold" />
+              <span>
+                LIC:{" "}
+                <span className="tabular-nums text-gold">
+                  #{business.license}
+                </span>
+              </span>
+            </a>
+          </div>
 
           <p
             data-reveal
