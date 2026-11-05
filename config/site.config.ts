@@ -39,7 +39,7 @@ export const siteConfig = {
   proof: {
     rating: 5.0,
     ratingLabel: "Exceptional",
-    reviewCount: 98,
+    reviewCount: 106,
     photoCount: 334,
     topProYears: "2025 & 2026",
     backgroundCheckYears: "2025 & 2026",
@@ -52,6 +52,10 @@ export const siteConfig = {
     facebookHandle: "@VoltaminElectric",
     whatsapp: "https://wa.me/18186992255",
     google: "https://share.google/0jIVCK7edxhgSXHAw",
+    // Deep link to the photo gallery on the Google Business Profile (the
+    // "See photos" link on the knowledge panel).
+    googlePhotos:
+      "https://www.google.com/maps/place/Voltamin+Electric/data=!4m2!3m1!1s0x0:0x96bfeef28e74eb5?hl=en&gl=us&ictx=111",
   },
 
   payments: ["Cash", "Check", "Credit card", "Venmo", "Zelle"],
@@ -60,7 +64,7 @@ export const siteConfig = {
     { label: "C-10 Licensed, Bonded & Insured", detail: "CSLB Lic. #1159185" },
     { label: "Background Checked", detail: "Verified 2025 & 2026" },
     { label: "Thumbtack Top Pro", detail: "2025 & 2026" },
-    { label: "5.0 Rating (Exceptional)", detail: "98 verified reviews" },
+    { label: "5.0 Rating (Exceptional)", detail: "106 verified reviews" },
     { label: "Free Service Call", detail: "No obligation" },
   ],
 
@@ -284,13 +288,85 @@ export const siteConfig = {
     googleUrl: "https://share.google/0jIVCK7edxhgSXHAw",
   },
 
-  // Archive of the written Thumbtack reviews, verbatim as of 2026-10-08 and
-  // still current on 2026-10-14 (scraped with Playwright, newest first). The
+  // Archive of the written Thumbtack reviews, verbatim as of 2026-10-08,
+  // refreshed on 2026-11-05 (scraped with Playwright, newest first). The
   // site shows live reviews and
   // only falls back to these when the live fetch is unavailable (no API key,
   // or the scrape failed). Dates under three weeks old were shown relative
   // on Thumbtack and are approximate.
   reviews: [
+    {
+      name: "Jafar A.",
+      date: "Nov 1, 2026",
+      rating: 5,
+      service: "Lighting Installation",
+      details: "New lighting installation • 2-4 lights • Under 8 feet (low ceiling) • Outdoors • Existing property • House",
+      body: "Sam did some electrical work in my house and I was very pleased with the quality and the value of his work.I highly recommend him .I will be asking him to do more electrical work in my house and business in the future.",
+      reply: "Thank you so much, Jafar, for your wonderful review and your trust in my work! I'm glad you're happy with the quality and value of my service. It was a pleasure working with you, and I look forward to helping with any future electrical projects at your home or business.\n\nSam Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+    },
+    {
+      name: "Eric P.",
+      date: "Nov 1, 2026",
+      rating: 5,
+      service: "Switch and Outlet Installation",
+      details: "",
+      body: "The work I requested had confused prior electrician. Sam was able to figure it out in 10 minutes. On time, responsive, fair price.",
+      reply: "Thank you so much, Eric, for your wonderful 5-star review! I truly appreciate your trust and kind words. I'm glad I was able to quickly identify and resolve the wiring issue and get your stairway lights working properly. It was a pleasure helping you, and I'm always here if you need any electrical services in the future!\n\nSam Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+    },
+    {
+      name: "Yasmin A.",
+      date: "Oct 22, 2026",
+      rating: 5,
+      service: "Lighting Installation",
+      details: "",
+      body: "Great experience working with Sam to install outdoor lights. Great quality, craftsmanship and communication",
+      reply: "Yasmin, I truly appreciate your wonderful review and your trust in Voltamin Electric! It was a pleasure working on your outdoor lighting project. I'm glad you were pleased with the quality, craftsmanship, and communication throughout the installation. Your satisfaction means a great deal to me, and I look forward to assisting you with any future electrical projects.\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+    },
+    {
+      name: "Paresh W.",
+      date: "Oct 22, 2026",
+      rating: 5,
+      service: "Switch and Outlet Installation",
+      details: "",
+      body: "Prompt response! very proactive! Above and beyond in terms of quality!! Listens to customer's feedback and won't stop until requirements are mate!!",
+      reply: "Paresh, I truly appreciate your kind words and trust in Voltamin Electric! It was a pleasure working with you. Listening to your feedback and making sure every detail met your expectations was important to me. I’m glad you’re happy with the results!\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+    },
+    {
+      name: "Benny H.",
+      date: "Oct 22, 2026",
+      rating: 5,
+      service: "Switch and Outlet Installation",
+      details: "",
+      body: "Sam is a great electrician. He is extremely friendly and helpful. He arrived on time and explained in detail all that he was doing. At the end he gave me a detailed summary of all of the work he had done. Very professional. Price was fair too Certainly will use him again. A+",
+      reply: "Dr. Benny Hau, It was a pleasure meeting you and your wife! I truly appreciate your thoughtful five-star review and the trust you placed in Voltamin Electric. I'm glad we were able to identify and correct the serious electrical safety issues in your home. Your safety, satisfaction, and peace of mind are always my top priorities. Thank you for recognizing my professionalism, quality of work, and fair pricing. It means a great deal to me. Please don't hesitate to reach out whenever you need electrical assistance.\n\nBest regards,\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+    },
+    {
+      name: "Duncan G.",
+      date: "Oct 15, 2026",
+      rating: 5,
+      service: "Fan Installation",
+      details: "Yes, the location has an existing light fixture • Ceiling • 8 - 10 feet (standard ceiling)",
+      body: "VOLTAMIN ELECTRIC did a great job on installing our two ceiling fans!",
+      reply: "Duncan, I truly appreciate your five-star review! It was a pleasure installing your two ceiling fans. I'm delighted you're happy with the work and would be glad to help again!\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+    },
+    {
+      name: "Rick J.",
+      date: "Oct 15, 2026",
+      rating: 5,
+      service: "",
+      details: "",
+      body: "Sam responded almost immediately and was at my property within 30 minutes on a Sunday.",
+      reply: "Rick, I appreciate your five-star review! I’m glad I could get to you quickly that Sunday and help with your electrical needs. It was a pleasure working with you, and I’m always happy to help again.\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\nC-10 Lic. #1159185",
+    },
+    {
+      name: "Raymond R.",
+      date: "Oct 15, 2026",
+      rating: 5,
+      service: "Switch and Outlet Installation",
+      details: "",
+      body: "Sam was very professional and on time. He was quick and easy to work with. recommend",
+      reply: "Raymond, I truly appreciate your kind words and recommendation! It was a pleasure installing your outdoor outlet. I’m glad you found the process quick and easy, and I’d be happy to help with any future electrical needs.\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+    },
     {
       name: "Betty S.",
       date: "Oct 2, 2026",
@@ -302,7 +378,7 @@ export const siteConfig = {
     },
     {
       name: "Amy C.",
-      date: "Oct 1, 2026",
+      date: "Oct 2, 2026",
       rating: 5,
       service: "",
       details: "",
@@ -320,7 +396,7 @@ export const siteConfig = {
     },
     {
       name: "Malini V.",
-      date: "Sep 24, 2026",
+      date: "Sep 30, 2026",
       rating: 5,
       service: "Lighting Installation",
       details: "",
@@ -1175,12 +1251,127 @@ export const siteConfig = {
     },
   ],
 
-  // Archive of the Google reviews as of 2026-10-14, same fallback role as
-  // `reviews`. Google only shows relative dates, so these are approximate.
+  // Archive of the Google reviews as of 2026-10-14, refreshed on 2026-11-05
+  // (41 written reviews; five more rate 5 stars without any text, and Rita
+  // Hecker-Boyce's Oct 6, 2026 review is no longer on the listing). Same
+  // fallback role as `reviews`. Google only shows relative dates, so these
+  // are approximate.
   googleReviews: {
     rating: 5,
-    count: 21,
+    count: 41,
     reviews: [
+      {
+        name: "Jafar Assaf",
+        date: "Nov 2, 2026",
+        rating: 5,
+        body: "Sam was excellent electrician…I watched him doing his work in my house and I can tell you that he knows how to do a perfect job.I highly recommend him.",
+        reply: "Thank you so much, Jafar, for your kind words and 5-star review! I truly appreciate your trust and recommendation. It was a pleasure working on your home, and I'm glad you're happy with the quality of my work. I'm always here whenever you need electrical services in the future!\n\nSam Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "Drake Wills",
+        date: "Nov 1, 2026",
+        rating: 5,
+        body: "Sam with Voltamin Electric is the best. We had a problem with the power going out from a faulty breaker. He quickly found the problem and solved the issue. We recently got a new Tesla, and we needed a Tesla Universal EV ChargerLevel 2 wall connector. He gave us a few options on where we should put the charger. He was able to install the charger that same day. Sam is a great electrician, and we trust him to work on our home. He is fast, and trustworthy, and does very clean work. He is based in Lake Forest, but he did work on our home in San Clemente. Thanks again Sam! We look forward to seeing you again!",
+        reply: "Drake, Thank you so much for the review the photos you shared! It was my pleasure troubleshooting your electrical issue and installing your Tesla Universal Wall Connector. I really appreciate your trust, support, and great words about the quality of my work. Customer satisfaction is always my top priority. I look forward to helping you with any future electrical projects. god bless you.\n\nSam Amini\nElectrical Contractor\nVoltamin Electric\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "mark",
+        date: "Oct 30, 2026",
+        rating: 5,
+        body: "Sam was professional on time described what he was doing. He was also knowledgeable and fast.",
+        reply: "I truly appreciate it, Mark, for your 5-star review! I truly appreciate your kind words and your trust in Voltamin Electric. I'm glad you were pleased with my professionalism, punctuality, clear communication, and efficient service. It was a pleasure working with you, and I look forward to helping you with any future electrical needs!\n\nSam Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "Paul Lee",
+        date: "Oct 30, 2026",
+        rating: 5,
+        body: "Quick, responsive, professional",
+        reply: "Thank you, Paul, for your kind review! I’m glad you were happy with the service. I truly appreciate your support and the opportunity to help with your electrical project.\n\nSam Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "Moe Mastani",
+        date: "Oct 29, 2026",
+        rating: 5,
+        body: "Saeid provided outstanding service from start to finish. It’s rare to find an electrician who combines such high-quality workmanship with excellent customer care. Before beginning the installation, he carefully evaluated our electrical panel and walked us through the work that needed to be done. He installed our Tesla home charger with a dedicated 60-amp circuit breaker, completing the job with remarkable precision and attention to detail. He also took care of the drywall repair and finishing, leaving the area looking just as good as it did before the work began. Saeid used professional-grade equipment, charged a fair and reasonable price, and the final result was even better than we had anticipated. It’s clear that Saeid is passionate about his work and committed to delivering excellent results. We wholeheartedly recommend Saeid and Voltamin Electric to anyone seeking a knowledgeable, dependable, and trustworthy electrical contractor.",
+        reply: "Hi Moe, Thank you for your wonderful five-star review! I sincerely appreciate your trust, support, and recognition of my workmanship and professionalism. Your satisfaction means a great deal to me. It was a pleasure serving you, and I look forward to helping with your future electrical needs!\n\nBest regards,\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "Neda Alimoradian",
+        date: "Oct 29, 2026",
+        rating: 5,
+        body: "I had a great experience with saeid (licensed electrician). He installed an EV charger at my house and did an excellent job. He was professional, knowledgeable, and paid attention to every detail. Everything was done neatly, safely, and on time. His pricing was fair, and he explained everything clearly. I highly recommend him to anyone looking for a reliable and skilled electrician!",
+        reply: "Dear Mrs Alimoradian, I truly appreciate your kind words and recommendation! It was a pleasure installing your EV charger. I’m glad you were happy with the workmanship, clear explanations, and fair pricing. I’m always happy to help with any future electrical needs.\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "Terence Adams",
+        date: "Oct 29, 2026",
+        rating: 5,
+        body: "Phenomenal service, professional, courteous, and extremely knowledgeable. Work was superlative. Highly recommend using this service for all your electrical needs. I couldn't imagine using anyone else.",
+        reply: "Terence, I sincerely appreciate your outstanding review and kind words. It was a pleasure working with you, and I’m delighted that you were satisfied with the quality of service, professionalism, and pricing. Your trust and recommendation mean a great deal to me. I look forward to assisting you with any future electrical needs!\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "Pam Kad",
+        date: "Oct 29, 2026",
+        rating: 5,
+        body: "We found Voltamin Electric on Google for an EV charger installation. Saeid provided a free estimate, explained everything clearly, and quoted a fair price upfront. He arrived on time the next day and completed the installation in about two and a half hours. He ran the conduit neatly along the wall and used a laser level to align the charger precisely. He was courteous, organized, and attentive to safety. The work exceeded our expectations. Highly recommend!",
+        reply: "Pam, I truly appreciate your thoughtful review and the photos you shared! It was a pleasure installing your EV charger, and I’m glad you’re happy with the clean installation and attention to detail. Your recommendation means a lot. Please feel free to reach out whenever you need electrical work.\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "Yasmin Altayyar",
+        date: "Oct 29, 2026",
+        rating: 5,
+        body: "We needed help installing 4 brand new lights on the outside of our home and Sam was exceptional. Very responsive, high craftsmanship and wants to do everything the correct way. Has a lot of pride on his work and is trustworthy. Highly recommend!",
+        reply: "Yasmin, I truly appreciate your wonderful review and the beautiful photos you shared! It was a pleasure installing your new outdoor lighting. Your trust, kind words, and recognition of my craftsmanship mean a lot to me. Thank you for supporting Voltamin Electric and helping my business grow. I'm always here whenever you need electrical services!\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "Mitra Raee",
+        date: "Oct 29, 2026",
+        rating: 5,
+        body: "Mr. Amini did an excellent job installing our home EV charger. He was professional, punctual, and transparent about pricing from the start. The work was completed efficiently, with great attention to detail, and everything was left clean and tidy. The charger works flawlessly, and we couldn't be happier with the results. His communication and quality of work were outstanding. We would gladly hire him again for any future electrical projects!",
+        reply: "Mrs. Raee, I sincerely appreciate your wonderful five-star review and your trust in Voltamin Electric! It was a pleasure helping you with your home EV charger installation. I'm delighted to hear that you're happy with the results. Providing safe, reliable, and high-quality electrical installations, along with transparent pricing, attention to detail, and excellent customer service, is always my priority. Thank you for recognizing my professionalism and workmanship. Your satisfaction and recommendation mean a great deal to me. I look forward to assisting you with any future electrical projects!\n\nBest regards,\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "Benny Hau",
+        date: "Oct 29, 2026",
+        rating: 5,
+        body: "Sam is a great electrician. He is extremely friendly and helpful. He arrived on time and explained in detail all that he was doing. At the end he gave me a detailed summary of all of the work he had done. Very professional. Price was fair too Certainly will use him again. A+",
+        reply: "Dear Dr. Benny Hau, It was truly a pleasure meeting you and your wife! I sincerely appreciate your wonderful five-star review, kind words, and trust in Voltamin Electric. I'm especially glad we were able to identify and correct the serious electrical hazards in your home. Providing safe, reliable, high-quality electrical work, along with clear communication, professionalism, and fair pricing, is always my priority. Your satisfaction and confidence in my work mean a great deal to me. Thank you again for your support and recommendation. It would be my pleasure to assist you with any future electrical needs!\n\nBest regards,\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "ray ray",
+        date: "Oct 22, 2026",
+        rating: 5,
+        body: "Saeid is truly an exceptional electrical contractor, unlike any we’ve worked with before! His professionalism, friendly attitude, and outstanding technical knowledge set him apart. He thoroughly inspected our electrical panel, explained every detail, and installed our Tesla EV charger with a dedicated 60-amp circuit breaker. His workmanship was incredibly precise and clean. He even repaired and finished the drywall himself, leaving everything looking as good as before. He used advanced tools, paid attention to every detail, and offered very reasonable pricing. The entire experience exceeded our expectations. Saeid genuinely takes pride in his work. Five stars simply aren’t enough! We highly recommend Saeid and Voltamin Electric to anyone looking for an exceptionally skilled, honest, and professional electrical contractor.",
+        reply: "Ray, your thoughtful review means so much to me! It was a pleasure installing your Tesla charger, and I’m delighted that the care, clear explanations, and clean finish stood out to you. I also appreciate you sharing photos of the completed work. Your trust and recommendation mean a great deal to my business. Enjoy the convenience of charging at home, and please count on me whenever you need electrical help!\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "Kamran Katib",
+        date: "Oct 22, 2026",
+        rating: 5,
+        body: "Saeid from Voltamin Electric was punctual, knowledgeable, and exceptionally professional. He assessed the project in person, performed an electrical load calculation, and verified that our panel had sufficient capacity for the additional EV charging load before installing a dedicated 60-amp circuit. He explained everything clearly, kept us informed, and completed the work efficiently and neatly. His attention to detail and pride in his work really stood out. One of the best electricians we’ve worked with in Orange County—we’re extremely pleased and already planning additional projects with him. Highly recommended!",
+        reply: "I truly appreciate your thoughtful review and the photos! It was a pleasure installing your EV charging circuit. I’m glad you appreciated the clear communication, careful planning, and attention to detail. Your trust means a great deal, and I look forward to helping with your upcoming projects.\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "behdad naziri",
+        date: "Oct 22, 2026",
+        rating: 5,
+        body: "Professional, swift service, reasonable prices, and amazing customer service! This sums up what you get from Voltamin Electric. I strongly recommend them to anyone looking for great electrical services for their home or business. Thank you!",
+        reply: "Dear Behdad, Thank you for your continued support, your guidance, your motivation, and your thoughtful feedback. I’m truly grateful for the time you took to leave a review and for the trust you place in me and in my business. Your support and recommendations mean a great deal, and I’m proud to serve you. I’m committed to maintaining the highest standard of service, and it’s an honor to receive your direction along the way. Thank you again for your support, confidence and encouragement.\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "Emily Judge",
+        date: "Oct 22, 2026",
+        rating: 5,
+        body: "Sam was effective, efficient and professional. We will call him for all our electrical needs moving forward!",
+        reply: "Emily, I truly appreciate your five-star review and your trust! It was a pleasure helping you, and I’m glad you were happy with my work. I look forward to helping with your future electrical needs.\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
+      {
+        name: "hamid zadeh",
+        date: "Oct 22, 2026",
+        rating: 5,
+        body: "I met Saeid in Orange County and found out that he was an electrician. Before hiring him, I checked his Google and Yelp reviews and visited his website. I was impressed to learn about his electrical education and training, the certifications he has earned, his experience, and his electrical contractor’s license. When he came to look at the project, he carefully checked everything, walked me through the details, and clearly explained the pricing. Saeid installed my Tesla home charger with great care. He kept me informed throughout the job, explained what he was doing, checked that everything was working properly, and completed the installation neatly and according to code. His pricing was fair, and I was very pleased with the quality of his work. He was punctual, disciplined, and consistently respectful toward me and my family. I highly recommend Saeid to anyone looking for a knowledgeable and trustworthy licensed electrician for an EV charger installation.",
+        reply: "Hi Hamid, I sincerely appreciate your thoughtful review and the photo! It was a pleasure installing your Tesla home charger and meeting your family. I’m glad you appreciated the clear explanations, fair pricing, and care taken throughout the installation. Your trust and recommendation mean a great deal to me. Enjoy the convenience of charging at home, and please reach out whenever you need electrical help!\n\nSaeid Amini\nElectrical Contractor\nVoltamin Electric ⚡️\n(818) 699-2255\nC-10 Lic. #1159185\nSam@VoltaminElectric.com\nwww.VoltaminElectric.com",
+      },
       {
         name: "John Stifter",
         date: "Oct 12, 2026",
@@ -1379,7 +1570,7 @@ export const siteConfig = {
     title:
       "Voltamin Electric | Licensed C-10 Electrician in Orange County, CA",
     description:
-      "California licensed, bonded and insured C-10 electrical contractor serving Orange County. Panel upgrades, EV chargers, lighting, outlets, wiring, and fans. 5.0 rating from 98 reviews. Free service call.",
+      "California licensed, bonded and insured C-10 electrical contractor serving Orange County. Panel upgrades, EV chargers, lighting, outlets, wiring, and fans. 5.0 rating from 106 reviews. Free service call.",
     keywords: [
       "electrician Orange County",
       "C-10 electrical contractor",

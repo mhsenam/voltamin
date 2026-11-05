@@ -10,8 +10,9 @@
  * Contract: sets window.__tt = { done, reviews, aggregate, error } and appends
  * <div id="tt-done"> when finished, so the caller can wait_for it.
  *
- * DOM notes: each star is a gray svg with a nested div clipping a green svg, and
- * an unfilled star has a zero-width overlay. A review card's innerText lines are
+ * DOM notes: cards are div.pv4.bb.b-neutral-medium and the rating is read from
+ * the stars row's aria-label ("5 stars out of 5 star rating"); the older svg
+ * width trick below is kept as a fallback. A review card's innerText lines are
  * name, date, bullet, "Hired on Thumbtack", body, details, "<pro>'s reply", reply;
  * the service label is read from the card's last element instead. React tracks
  * the select value, so the sort is set through the native value setter.
@@ -33,13 +34,17 @@ export const THUMBTACK_EXTRACTOR = String.raw`(() => {
   const section = () => document.getElementById('ServicePageReviewsSection');
   const cards = () => {
     const s = section();
-    return s ? [...s.querySelectorAll('div.pv4.bb.b-gray')] : [];
+    return s ? [...s.querySelectorAll('div.pv4.bb.b-neutral-medium')] : [];
   };
   const key = (c) => clean(c.innerText).slice(0, 80);
-  const rating = (c) =>
-    [...c.querySelectorAll('div')]
+  const rating = (c) => {
+    const el = c.querySelector('div[aria-label*="star"]');
+    const m = el && (el.getAttribute('aria-label') || '').match(/(\d)\s+stars?\s+out of\s+(\d)/i);
+    if (m) return Number(m[1]);
+    return [...c.querySelectorAll('div')]
       .filter((d) => d.querySelector(':scope > svg') && d.querySelector(':scope > div > svg'))
       .filter((d) => d.querySelector(':scope > div').getBoundingClientRect().width > 0).length;
+  };
   const parse = (c) => {
     const lines = c.innerText.split('\n').map(clean).filter(Boolean);
     const det = lines.findIndex((l) => /^Details:/i.test(l));

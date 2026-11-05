@@ -47,7 +47,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Electrician",
   name: business.name,
-  image: `${business.url}/images/1366 (22).webp`,
+  image: `${business.url}/images/google-01.webp`,
   url: business.url,
   telephone: business.phoneRaw,
   email: business.email,

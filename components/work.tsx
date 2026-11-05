@@ -7,11 +7,11 @@ import { ChevronLeft, ChevronRight, X, ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
 import { siteConfig } from "@/config/site.config";
 
-// 1366.webp plus 1366 (1)…(29).webp — the job photos in /public/images
-export const photos = [
-  "/images/1366.webp",
-  ...Array.from({ length: 29 }, (_, i) => `/images/1366 (${i + 1}).webp`),
-];
+// google-01…google-40.webp — the top photos on the Google Business Profile
+export const photos = Array.from(
+  { length: 40 },
+  (_, i) => `/images/google-${String(i + 1).padStart(2, "0")}.webp`
+);
 
 const INITIAL = 12;
 
@@ -80,8 +80,8 @@ export const Work = () => {
           ))}
         </div>
 
-        {!expanded && photos.length > INITIAL && (
-          <div className="mt-9 flex justify-center">
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+          {!expanded && photos.length > INITIAL && (
             <button
               type="button"
               onClick={() => setExpanded(true)}
@@ -89,8 +89,17 @@ export const Work = () => {
             >
               View all {photos.length} photos
             </button>
-          </div>
-        )}
+          )}
+          <a
+            href={siteConfig.social.googlePhotos}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-[5px] border border-navy-300 px-5 py-2.5 text-[13.5px] font-semibold text-navy-950 transition-colors hover:border-navy-950"
+          >
+            More photos on Google
+            <ArrowUpRight className="h-4 w-4" />
+          </a>
+        </div>
       </div>
 
       {/* Lightbox */}

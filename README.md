@@ -120,10 +120,12 @@ collapsed.
 
 ### Photos
 
-`components/work.tsx` reads `/public/images/1366.webp` and `1366 (1).webp` …
-`1366 (29).webp` — 30 files, shown 12 at a time behind a "View all" toggle, with a
-keyboard-navigable lightbox. To change the set, drop files in `public/images` and update
-the `photos` array. The hero image is set separately in `components/hero.tsx`.
+`components/work.tsx` reads `/public/images/google-01.webp` … `google-40.webp` — 40 files,
+the top photos on the Google Business Profile (replaced from there on 2026-11-05), shown
+12 at a time behind a "View all" toggle, with a keyboard-navigable lightbox. A "More
+photos on Google" button links to the profile's photo gallery (`social.googlePhotos`). To
+change the set, drop files in `public/images` and update the `photos` array. The hero
+image is set separately in `components/hero.tsx`.
 
 ---
 
