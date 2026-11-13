@@ -7,7 +7,7 @@ const { business, proof } = siteConfig;
 
 const facts = [
   { label: "Years in business", value: `${business.yearsInBusiness}` },
-  { label: "Average rating", value: proof.rating.toFixed(1) },
+  { label: "Thumbtack rating", value: proof.rating.toFixed(1) },
 ];
 
 export const About = () => (

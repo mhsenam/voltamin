@@ -6,13 +6,14 @@ import { siteConfig } from "@/config/site.config";
 
 const { business, proof } = siteConfig;
 
+// Root-anchored so the footer works on the homepage and on the /services pages.
 const navLinks = [
-  { label: "Reviews", href: "#reviews" },
-  { label: "Services", href: "#services" },
-  { label: "How it works", href: "#process" },
-  { label: "Recent work", href: "#work" },
-  { label: "Credentials", href: "#about" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Reviews", href: "/#reviews" },
+  { label: "Services", href: "/services" },
+  { label: "How it works", href: "/#process" },
+  { label: "Recent work", href: "/#work" },
+  { label: "Credentials", href: "/#about" },
+  { label: "FAQ", href: "/#faq" },
 ];
 
 export const Footer = () => (
@@ -111,7 +112,8 @@ export const Footer = () => (
               {business.city}, {business.state} · Serving {business.region}
             </li>
             <li className="text-[13px]">
-              Rated {proof.rating.toFixed(1)} from {proof.reviewCount} reviews
+              Rated {proof.rating.toFixed(1)} from {proof.reviewCount} Thumbtack
+              reviews
             </li>
           </ul>
 
@@ -135,7 +137,7 @@ export const Footer = () => (
         <p>
           © {new Date().getFullYear()} {business.name}. All rights reserved.
         </p>
-        <p className="text-navy-400">
+        <p className="text-navy-300">
           CSLB License #{business.license} · {business.licenseClass}{" "}
           Classification · Licensed, Bonded &amp; Insured
         </p>

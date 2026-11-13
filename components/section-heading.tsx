@@ -30,7 +30,10 @@ export const SectionHeading = ({
         data-split
         className={cn(
           "display text-3xl sm:text-4xl md:text-[2.75rem]",
-          dark ? "text-white" : "text-foreground"
+          // Light sections need an explicit dark heading colour: --foreground is
+          // near-white for the dark root theme, so text-foreground would be
+          // invisible on white.
+          dark ? "text-white" : "text-navy-950"
         )}
       >
         {title}
