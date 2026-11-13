@@ -61,7 +61,10 @@ export const Hero = ({
           >
             {hero.headline}
             <br />
-            <span className="gradient-text">{hero.headlineAccent}</span>
+            {/* Solid gold, not a background-clip gradient: SplitText wraps each
+                word in position:relative divs that paint over the parent's
+                clipped background, which made this line invisible. */}
+            <span className="text-gold">{hero.headlineAccent}</span>
           </h1>
 
           <p className="mb-10 max-w-xl text-lg leading-relaxed text-navy-300">
