@@ -1,6 +1,7 @@
-import { Fragment } from "react";
+"use client";
+
 import Image from "next/image";
-import { Phone, Star, Award, ShieldCheck } from "lucide-react";
+import { Phone, Star, Award, ShieldCheck, Sparkles } from "lucide-react";
 import { GoogleG } from "@/components/socials";
 import { siteConfig } from "@/config/site.config";
 import type { ReviewSource } from "@/lib/reviews";
@@ -27,147 +28,126 @@ export const Hero = ({
   return (
     <section
       id="top"
-      className="relative overflow-hidden bg-navy-950 text-white"
+      className="relative overflow-hidden bg-background text-foreground min-h-screen flex flex-col"
     >
-      {/* Soft gold bloom behind the copy */}
-      <div
-        aria-hidden
-        data-parallax="60"
-        className="pointer-events-none absolute -left-40 top-0 h-[520px] w-[520px] rounded-full bg-gold/10 blur-[120px]"
-      />
-      <div
-        aria-hidden
-        data-parallax="12"
-        className="pointer-events-none absolute -inset-y-24 inset-x-0 opacity-[0.035]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
-          backgroundSize: "68px 68px",
-        }}
-      />
+      {/* Ambient glow orbs */}
+      <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
+        <div
+          className="absolute -left-20 -top-40 h-[600px] w-[600px] rounded-full bg-gold/10 blur-[140px] mix-blend-overlay"
+          style={{ animation: "pulse 10s ease-in-out infinite alternate" }}
+        />
+        <div
+          className="absolute -right-20 -bottom-40 h-[700px] w-[700px] rounded-full bg-[#3c5980]/20 blur-[140px] mix-blend-overlay"
+          style={{ animation: "pulse 12s ease-in-out infinite alternate-reverse", animationDelay: "2s" }}
+        />
+      </div>
 
-      <div data-hero className="shell relative py-14 md:py-20 lg:py-24">
-        {/* Copy */}
+      <div
+        data-hero
+        className="shell relative flex flex-col items-start justify-center pt-28 pb-32 lg:pt-36 lg:pb-44 z-10"
+      >
         <div className="max-w-3xl">
-          {/* The header logo, large, so the brand leads the page */}
-          <div data-reveal className="mb-10 flex items-center gap-4 sm:gap-5">
-            <span className="relative flex h-20 w-20 shrink-0 overflow-hidden rounded-[10px] border border-gold/40 shadow-[0_0_48px_-8px_rgba(233,166,33,0.55)] sm:h-28 sm:w-28">
-              <Image
-                src="/images/logo.jpeg"
-                alt={`${business.name} logo`}
-                fill
-                sizes="112px"
-                className="object-cover"
-                priority
-              />
-            </span>
-            <span className="font-slab text-[30px] uppercase leading-[1.02] tracking-[0.02em] text-logo sm:text-[44px]">
-              Voltamin
-              <span className="block">Electric</span>
-            </span>
+          <div className="flex items-center gap-3 mb-8">
+            <span className="h-1 w-8 bg-accent rounded-full" />
+            <p className="eyebrow text-accent">
+              <span className="block">Electrical Contractor</span>
+            </p>
           </div>
-
-          <p data-reveal className="eyebrow !text-navy-300">
-            {business.licenseClass} Licensed · Lic. #{business.license} ·{" "}
-            {business.region}
-          </p>
 
           <h1
             data-split
             data-delay="0.1"
-            className="display mt-6 text-[2.15rem] sm:text-[2.9rem] lg:text-[3.5rem]"
+            className="display mt-0 mb-6 text-[2.2rem] sm:text-[3.2rem] lg:text-[4.6rem] tracking-tight"
           >
             {hero.headline}
             <br />
-            <span className="text-gold">{hero.headlineAccent}</span>
+            <span className="gradient-text">{hero.headlineAccent}</span>
           </h1>
 
-          <p
-            data-reveal
-            data-delay="0.45"
-            className="mt-6 max-w-xl text-[15px] leading-relaxed text-navy-200 md:text-[17px]"
-          >
+          <p className="mb-10 max-w-xl text-lg leading-relaxed text-navy-300">
             {business.intro}
           </p>
 
-          {/* CTAs */}
-          <div
-            data-reveal
-            data-delay="0.6"
-            className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center"
-          >
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
             <a
               href={`tel:${business.phoneRaw}`}
               data-magnetic
-              className="inline-flex items-center justify-center gap-2 rounded-[5px] bg-gold px-6 py-3.5 text-[14.5px] font-bold text-navy-950 transition-colors hover:bg-gold-400"
+              className="btn-primary glow"
+              style={{ borderRadius: "14px" }}
             >
               <Phone className="h-4 w-4" />
               Call {business.phone}
             </a>
+            <a href="#contact" className="btn-ghost glow" style={{ borderRadius: "14px" }}>
+              Get a free quote
+            </a>
           </div>
 
-          {/* Rating strip */}
-          <div
-            data-reveal
-            data-delay="0.75"
-            className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4 border-t border-white/10 pt-7"
-          >
-            {ratings.map((r, i) => (
-              <Fragment key={r.label}>
-                {i > 0 && <div className="h-9 w-px bg-white/10" />}
-                <a href="#reviews" className="group">
-                  <div className="flex items-center gap-1.5">
-                    {r.icon}
-                    <span
-                      data-count={r.source.rating.toFixed(1)}
-                      data-delay="0.75"
-                      className="text-xl font-bold tabular-nums leading-none"
-                    >
-                      {r.source.rating.toFixed(1)}
-                    </span>
-                    <span className="flex gap-0.5">
-                      {Array.from({ length: 5 }).map((_, s) => (
-                        <Star key={s} className="h-3.5 w-3.5 fill-gold text-gold" />
-                      ))}
-                    </span>
-                  </div>
-                  <p className="mt-1.5 text-[11.5px] tracking-wide text-navy-300 underline decoration-white/20 underline-offset-4 transition-colors group-hover:text-gold group-hover:decoration-gold">
-                    {r.source.count} {r.label} reviews
-                  </p>
-                </a>
-              </Fragment>
-            ))}
+          {/* Trust strip */}
+          <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-6 border-t border-white/5 pt-8">
+            <div className="flex items-center gap-2 text-sm font-medium text-white">
+              <ShieldCheck className="h-4 w-4 text-accent" />
+              CSLB {business.licenseClass} Lic. #{business.license}
+            </div>
+            <div className="flex items-center gap-2 text-sm font-medium text-white">
+              <Sparkles className="h-4 w-4 text-accent" />
+              Rated {proof.rating.toFixed(1)} from {proof.reviewCount} Thumbtack
+              reviews
+            </div>
+            <div className="flex items-center gap-2 text-sm font-medium text-white">
+              <Phone className="h-4 w-4 text-accent" />
+              Free service call
+            </div>
+          </div>
 
+          <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4 border-t border-white/5 pt-7">
+            {ratings.map((r) => (
+              <div key={r.label} className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5">
+                  {r.icon}
+                  <span className="text-xl font-bold tabular-nums leading-none text-white">
+                    {r.source.rating.toFixed(1)}
+                  </span>
+                  <span className="flex gap-0.5">
+                    {Array.from({ length: 5 }).map((_, s) => (
+                      <Star key={s} className="h-3.5 w-3.5 fill-accent text-accent" />
+                    ))}
+                  </span>
+                </div>
+                <p className="text-xs text-navy-300">
+                  {r.source.count} {r.label} reviews
+                </p>
+              </div>
+            ))}
             <div className="flex flex-wrap gap-2">
               {badges.map((b) => (
                 <span
                   key={b.label}
-                  className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/10 px-3 py-1.5"
+                  className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-accent"
                 >
-                  <b.icon className="h-4 w-4 text-gold" />
-                  <span className="text-[12px] font-semibold text-gold-200">{b.label}</span>
+                  <b.icon className="h-3.5 w-3.5 text-accent" />
+                  {b.label}
                 </span>
               ))}
             </div>
           </div>
-        </div>
 
-        {/* Cover banner — a wide, self-contained piece of artwork, so it is shown
-            whole from sm up and cropped to its left (logo + headline) on phones. */}
-        <div
-          data-clip
-          data-delay="0.5"
-          className="relative mt-12 overflow-hidden rounded-[6px] border border-white/10 md:mt-16"
-        >
-          <div className="relative aspect-[4/3] w-full sm:aspect-[2.435/1]">
-            <Image
-              src="/images/cover.jpeg"
-              alt={`${business.name} — licensed C-10 electrical contractor for residential, commercial, and industrial work`}
-              fill
-              priority
-              sizes="(max-width: 640px) 100vw, (max-width: 1280px) 100vw, 1200px"
-              className="object-cover object-left sm:object-contain sm:object-center"
-            />
+          {/* Cover image */}
+          <div
+            data-clip
+            data-delay="0.5"
+            className="mt-16 relative overflow-hidden rounded-2xl border border-white/8 bg-white/3 shadow-2xl"
+          >
+            <div className="relative aspect-[2.435/1] w-full">
+              <Image
+                src="/images/cover.jpeg"
+                alt={`${business.name} — licensed C-10 electrical contractor`}
+                fill
+                priority
+                className="object-cover object-center scale-100 transition-transform duration-700 hover:scale-105"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 1200px"
+              />
+            </div>
           </div>
         </div>
       </div>
