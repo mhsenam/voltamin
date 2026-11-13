@@ -102,11 +102,6 @@
     @apply absolute inset-0 rounded-2xl border-t border-white/12 bg-gradient-to-b from-white/6 to-transparent pointer-events-none;
   }
 
-  /* Gradient text heading */
-  .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white/90 to-accent;
-  }
-
   /* Gold accent glow behind an element */
   .glow {
     position: relative;
