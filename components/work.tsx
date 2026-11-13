@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X, ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
@@ -18,6 +18,9 @@ const INITIAL = 12;
 export const Work = () => {
   const [expanded, setExpanded] = useState(false);
   const [active, setActive] = useState<number | null>(null);
+  const closeButton = useRef<HTMLButtonElement>(null);
+  // So closing the lightbox returns focus to the photo that opened it.
+  const trigger = useRef<HTMLButtonElement | null>(null);
 
   const visible = expanded ? photos : photos.slice(0, INITIAL);
 
@@ -40,11 +43,16 @@ export const Work = () => {
     };
     window.addEventListener("keydown", onKey);
     document.body.style.overflow = "hidden";
+    closeButton.current?.focus();
     return () => {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = "";
     };
   }, [active, step]);
+
+  useEffect(() => {
+    if (active === null) trigger.current?.focus();
+  }, [active]);
 
   return (
     <section id="work" className="bg-navy-50 py-20 md:py-28">
@@ -63,7 +71,10 @@ export const Work = () => {
             <button
               key={src}
               type="button"
-              onClick={() => setActive(photos.indexOf(src))}
+              onClick={(e) => {
+                trigger.current = e.currentTarget;
+                setActive(photos.indexOf(src));
+              }}
               className="group relative aspect-square overflow-hidden rounded-[4px] bg-navy-200"
               aria-label={`Open project photo ${i + 1}`}
             >
@@ -118,6 +129,7 @@ export const Work = () => {
           >
             <button
               type="button"
+              ref={closeButton}
               onClick={() => setActive(null)}
               aria-label="Close"
               className="absolute right-4 top-4 rounded-full p-2 text-white/70 transition-colors hover:text-white"

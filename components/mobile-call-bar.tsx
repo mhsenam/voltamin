@@ -36,7 +36,7 @@ export const MobileCallBar = () => {
             Call now
           </a>
           <a
-            href="#contact"
+            href="/#contact"
             className="flex items-center justify-center gap-2 bg-gold py-3.5 text-[13.5px] font-bold text-navy-950"
           >
             <CalendarCheck className="h-4 w-4" />

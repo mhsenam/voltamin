@@ -45,8 +45,10 @@ export const FAQ = () => {
               <div key={faq.question}>
                 <button
                   type="button"
+                  id={`faq-question-${i}`}
                   onClick={() => setOpen(isOpen ? null : i)}
                   aria-expanded={isOpen}
+                  aria-controls={`faq-answer-${i}`}
                   className="flex w-full items-start justify-between gap-6 py-5 text-left"
                 >
                   <span className="flex gap-4">
@@ -67,6 +69,9 @@ export const FAQ = () => {
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
+                      id={`faq-answer-${i}`}
+                      role="region"
+                      aria-labelledby={`faq-question-${i}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
