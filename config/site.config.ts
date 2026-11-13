@@ -20,7 +20,9 @@ export const siteConfig = {
     phone: "(818) 699-2255",
     phoneRaw: "+18186992255",
     email: "Sam@VoltaminElectric.com",
-    url: "https://voltaminelectric.com",
+    // Canonical host — the site is served from www, so every canonical URL,
+    // OG tag and structured-data reference must match this host exactly.
+    url: "https://www.voltaminelectric.com",
     priceRange: "$$",
     yearsInBusiness: 6,
     /** Licence wording used across the header, footer, and contact block. */
@@ -64,7 +66,7 @@ export const siteConfig = {
     { label: "C-10 Licensed, Bonded & Insured", detail: "CSLB Lic. #1159185" },
     { label: "Background Checked", detail: "Verified 2025 & 2026" },
     { label: "Thumbtack Top Pro", detail: "2025 & 2026" },
-    { label: "5.0 Rating (Exceptional)", detail: "106 verified reviews" },
+    { label: "5.0 Rating (Exceptional)", detail: "106 verified Thumbtack reviews" },
     { label: "Free Service Call", detail: "No obligation" },
   ],
 

@@ -21,7 +21,7 @@ const SECONDS_PER_CARD = 6;
 const MIN_CARDS_PER_ROW = 8;
 
 const Stars = ({ count = 5, className }: { count?: number; className?: string }) => (
-  <span className="flex gap-0.5" aria-label={`${count} out of 5 stars`}>
+  <span role="img" aria-label={`${count} out of 5 stars`} className="flex gap-0.5">
     {Array.from({ length: 5 }).map((_, i) => (
       <Star
         key={i}
@@ -149,7 +149,7 @@ export const Testimonials = ({
               <span>
                 <Stars className="h-6 w-6" />
                 <span className="mt-2 block text-[14px] font-semibold text-navy-800">
-                  {thumbtack.count} verified reviews
+                  {thumbtack.count} verified Thumbtack reviews
                 </span>
                 <span className="block text-[12.5px] text-muted-foreground">
                   {proof.ratingLabel} · Thumbtack Top Pro {proof.topProYears}

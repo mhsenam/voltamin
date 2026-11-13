@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Roboto_Slab } from "next/font/google";
 import { siteConfig } from "@/config/site.config";
+import { homeJsonLd } from "@/lib/seo";
 import "@/styles/globals.css";
 
 const inter = Inter({
@@ -17,7 +18,7 @@ const slab = Roboto_Slab({
   display: "swap",
 });
 
-const { business, proof, seo, social } = siteConfig;
+const { business, seo } = siteConfig;
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -27,51 +28,49 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(business.url),
-  title: seo.title,
+  title: {
+    // Homepage title; internal pages get "<page> | Voltamin Electric".
+    default: seo.title,
+    template: `%s | ${business.name}`,
+  },
   description: seo.description,
   keywords: [...seo.keywords],
   authors: [{ name: business.owner }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: seo.title,
     description: seo.description,
-    url: business.url,
+    url: "/",
     siteName: business.name,
     locale: "en_US",
     type: "website",
   },
-  robots: { index: true, follow: true },
+  twitter: {
+    card: "summary_large_image",
+    title: seo.title,
+    description: seo.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  category: "Electrical Contractor",
 };
 
-// LocalBusiness structured data — helps the profile surface in local search
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Electrician",
-  name: business.name,
-  image: `${business.url}/images/google-01.webp`,
-  url: business.url,
-  telephone: business.phoneRaw,
-  email: business.email,
-  priceRange: business.priceRange,
-  founder: { "@type": "Person", name: business.owner },
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: business.city,
-    addressRegion: business.state,
-    addressCountry: "US",
-  },
-  areaServed: siteConfig.serviceAreas.map((city) => ({
-    "@type": "City",
-    name: `${city}, CA`,
-  })),
-  aggregateRating: {
-    "@type": "AggregateRating",
-    ratingValue: proof.rating,
-    reviewCount: proof.reviewCount,
-    bestRating: 5,
-  },
-  hasCredential: `CSLB ${business.licenseClass} License #${business.license}`,
-  sameAs: [social.instagram, social.facebook, social.google],
-};
+// LocalBusiness + WebSite + FAQPage structured data — all three describe
+// content that is visible on the homepage. Deliberately no aggregateRating:
+// the 5.0/106 figures are Thumbtack's, and self-serving review markup on
+// LocalBusiness entities is ineligible under Google's guidelines.
+const jsonLd = homeJsonLd();
 
 export default function RootLayout({
   children,

@@ -80,7 +80,8 @@ const CertificateCard = ({
   <button
     type="button"
     onClick={onOpen}
-    aria-label={`View certificate: ${cert.title}`}
+    // No aria-label: the visible card text (badge, label, issuer) is already
+    // a complete accessible name, and it must contain that visible text.
     className={cn(
       "group block w-full rounded-xl border border-border bg-white p-2 text-left transition duration-300 hover:-translate-y-1 hover:border-gold/60 hover:shadow-[0_18px_40px_-18px_rgba(13,23,40,0.35)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold",
       className
