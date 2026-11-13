@@ -1,31 +1,9 @@
-import {
-  Lightbulb,
-  Wrench,
-  ToggleRight,
-  Cable,
-  Gauge,
-  Fan,
-  Zap,
-  PlugZap,
-  Home,
-  Camera,
-  type LucideIcon,
-} from "lucide-react";
+import Link from "next/link";
+import { Zap } from "lucide-react";
 import { SectionHeading } from "@/components/section-heading";
+import { serviceIcons } from "@/lib/service-icons";
+import { servicePath, serviceSlugByTitle } from "@/lib/seo";
 import { siteConfig } from "@/config/site.config";
-
-const iconMap: Record<string, LucideIcon> = {
-  Lightbulb,
-  Wrench,
-  ToggleRight,
-  Cable,
-  Gauge,
-  Fan,
-  Zap,
-  PlugZap,
-  Home,
-  Camera,
-};
 
 const optionGroups: ReadonlyArray<readonly [string, readonly string[]]> = [
   ["Ceiling height", siteConfig.projectOptions.ceilingHeight],
@@ -44,14 +22,15 @@ export const Services = () => (
 
       <div data-stagger="left" className="divide-y divide-border border-b border-border">
         {siteConfig.services.map((service, i) => {
-          const Icon = iconMap[service.icon] ?? Zap;
+          const Icon = serviceIcons[service.icon] ?? Zap;
+          const slug = serviceSlugByTitle[service.title];
           return (
             <article
               key={service.title}
               className="group grid gap-4 py-8 md:grid-cols-[64px_1fr_1.35fr] md:gap-8 md:py-9"
             >
               <div className="flex items-center gap-3 md:block">
-                <span className="text-[12px] font-semibold tabular-nums text-gold-600">
+                <span className="text-[12px] font-semibold tabular-nums text-gold-700">
                   / {String(i + 1).padStart(2, "0")}
                 </span>
               </div>
@@ -59,7 +38,16 @@ export const Services = () => (
               <div className="flex items-start gap-3">
                 <Icon className="mt-0.5 h-[18px] w-[18px] shrink-0 text-navy-400 transition-colors group-hover:text-gold-600" />
                 <h3 className="text-[19px] font-semibold leading-snug tracking-[-0.01em] text-navy-950 md:text-xl">
-                  {service.title}
+                  {slug ? (
+                    <Link
+                      href={servicePath(slug)}
+                      className="transition-colors hover:text-gold-700"
+                    >
+                      {service.title}
+                    </Link>
+                  ) : (
+                    service.title
+                  )}
                 </h3>
               </div>
 
