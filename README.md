@@ -1,15 +1,16 @@
 # Voltamin Electric
 
-![Next.js](https://img.shields.io/badge/Next.js-14.0-black)
+![Next.js](https://img.shields.io/badge/Next.js-14.2-black)
 ![React](https://img.shields.io/badge/React-18.2-blue)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.6-3178C6)
 
 Marketing site for **Voltamin Electric**, a licensed C-10 electrical contractor
-(CSLB #1159185) serving Orange County, California. Single-page Next.js App Router
-site with a contact form that sends through Resend.
+(CSLB #1159185) serving Orange County, California. Single-page site plus ten
+service landing pages, built with the Next.js App Router, with a hardened
+contact form that sends through Resend.
 
-Live: [voltaminelectric.com](https://voltaminelectric.com)
+Live: [www.voltaminelectric.com](https://www.voltaminelectric.com)
 
 ---
 
@@ -27,6 +28,7 @@ npm run dev          # http://localhost:3000
 | `npm start` | Serve the production build |
 | `npm run lint` | ESLint |
 | `npm run check:reviews` | Offline checks for the live reviews code |
+| `npm run check:site` | Offline checks for form validation, rate limiting, and structured data |
 
 ### Environment
 
@@ -37,7 +39,15 @@ RESEND_API_KEY=re_xxxxxxxx
 # Live reviews (optional, see below)
 SCRAPINGBEE_API_KEY=xxxxxxxx
 SCRAPINGBEE_PROXY=stealth      # optional: Thumbtack uses the premium proxy (25 credits) by default, stealth is 75
+
+# Durable contact-form rate limiting (optional but recommended in production).
+# Attach a Vercel Marketplace KV (Upstash) store and these are injected
+# automatically; without them the form falls back to per-instance limiting.
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
 ```
+
+See `.env.example` for the full list with comments.
 
 `RESEND_API_KEY` is only for the contact form. Without it the build still succeeds and the
 page renders normally — `/api/send-email` returns a 503 telling the visitor to call instead.
@@ -70,12 +80,34 @@ fails keeps serving the old one.
   constants, or the Thumbtack refresh is the big one.
 - With no key, and before the first successful fetch, the Thumbtack tab shows the archived
   reviews in `siteConfig.reviews` and the Google tab says it is unavailable.
-- Only the reviews section is live. The hero, footer and SEO JSON-LD still read the static
-  `proof` figures. The Thumbtack link was removed on purpose, so the Google listing is the
-  only review link on the site.
+- Only the reviews section is live. The hero, footer and trust bar read the static `proof`
+  figures, which are Thumbtack's — those spots say "Thumbtack" next to the numbers, and the
+  Google figures stay on the Google tab. The Thumbtack link was removed on purpose, so the
+  Google listing is the only review link on the site.
 - If Thumbtack or Google change their markup, the extractor or parser returns nothing and
   the fallbacks above apply. `npm run check:reviews` checks the parsers, and that the
   Thumbtack extractor still parses and fits in a URL.
+
+---
+
+## Contact form security
+
+`app/api/send-email/route.ts` runs every submission through, in order:
+
+1. **Origin check** (`lib/origin-check.ts`) — cross-site POSTs are refused by host; the
+   canonical domain, the apex, `VERCEL_URL` (previews), and localhost (non-Vercel) pass.
+2. **Rate limiting** (`lib/rate-limit.ts`) — 5 per IP per hour and 40 globally per hour,
+   via Upstash Redis REST when `UPSTASH_REDIS_REST_URL`/`UPSTASH_REDIS_REST_TOKEN` are set,
+   with a per-instance in-memory fallback. A failing Redis store fails open rather than
+   blocking real customers.
+3. **Honeypot** — a hidden `company` field; filled submissions get a fake success and send
+   nothing.
+4. **Validation** (`lib/contact-validate.ts`) — required fields, strict length limits,
+   email format, phone format, control-character stripping. The same rules run client-side
+   in `components/contact.tsx` for instant feedback.
+
+Resend's error paths are unchanged: no key → 503 with the phone number; admin send failure
+→ 500; customer confirmation failure is logged and swallowed.
 
 ---
 
@@ -135,17 +167,17 @@ image is set separately in `components/hero.tsx`.
 
 | # | Component | Notes |
 | --- | --- | --- |
-| | `navigation` | Utility strip (licence, area, phone) + sticky header |
-| | `hero` | Large logo, headline, call button, rating strip, feature photo |
+| | `navigation` | Sticky header with logo, section links, phone, mobile menu |
+| | `hero` | Headline, call/quote buttons, rating strip, feature photo |
 | | `testimonials` | Bold rating header, Thumbtack/Google tabs, auto-scrolling review rows |
 | | `socials` | Google, Facebook, Instagram and WhatsApp link cards |
 | | `marquee` | Scrolling service keywords |
 | | `trust-bar` | Five credibility badges |
-| 01 | `services` | Seven services with detail chips + project qualifiers |
+| 01 | `services` | Ten services with detail chips + project qualifiers, each linking to its landing page |
 | | `free-service-call` | The free-estimate differentiator |
 | 02 | `process` | Five steps from call to walk-through |
 | 03 | `clients` | Residential / commercial / industrial + payment chips |
-| 04 | `work` | 30-photo gallery with lightbox |
+| 04 | `work` | 40-photo gallery with lightbox |
 | 05 | `about` | Owner story, licence verification, zoomable certificate gallery (`certificates`) |
 | 06 | `service-area` | 26 Orange County cities |
 | | `faq` | Eight-question accordion |
@@ -189,25 +221,27 @@ screenshots at scroll offsets instead.
 ```
 voltamin/
 ├── app/
-│   ├── api/send-email/route.ts   # Resend handler (force-dynamic)
-│   ├── icon.svg                  # Favicon
-│   ├── layout.tsx                # Fonts, metadata, LocalBusiness JSON-LD
-│   └── page.tsx                  # Section composition
-├── components/
-│   ├── navigation.tsx  hero.tsx  marquee.tsx  trust-bar.tsx
-│   ├── services.tsx    free-service-call.tsx  process.tsx  clients.tsx
-│   ├── work.tsx        about.tsx  certificates.tsx  testimonials.tsx
-│   ├── socials.tsx     service-area.tsx
-│   ├── faq.tsx         contact.tsx  footer.tsx  mobile-call-bar.tsx
-│   ├── section-heading.tsx
-│   └── ui/                       # button, card, badge (currently unused)
+│   ├── api/send-email/route.ts   # Hardened Resend handler (see above)
+│   ├── layout.tsx                # Fonts, metadata, JSON-LD graph
+│   ├── page.tsx                  # Section composition
+│   ├── services/page.tsx         # Services index
+│   ├── services/[slug]/page.tsx  # Ten SSG service landing pages
+│   ├── sitemap.ts  robots.ts     # Generated sitemap.xml / robots.txt
+│   ├── opengraph-image.png  twitter-image.png  # Static 1200x630 social cards
+│   └── icon.png  apple-icon.png  # Favicons (file-convention metadata)
+├── components/                   # (nav, hero, sections, form, footer…)
+│   └── ui/select.tsx             # Radix select used by the form
 ├── config/site.config.ts         # All site content
 ├── lib/
-│   ├── utils.ts                  # cn() class merger
-│   ├── reviews.ts                # Live Thumbtack + Google review services (ScrapingBee)
-│   ├── thumbtack-extractor.ts    # Script run inside the Thumbtack page
-│   └── reviews.check.ts          # npm run check:reviews
-├── public/images/                # 30 job photos
+│   ├── seo.ts                    # JSON-LD builders (tested by seo.check.ts)
+│   ├── service-pages.ts          # Landing-page copy for the ten services
+│   ├── contact-validate.ts       # Form validation rules (shared client/server)
+│   ├── rate-limit.ts             # Upstash/in-memory rate limiter
+│   ├── origin-check.ts           # Same-origin enforcement for the form
+│   ├── reviews.ts  thumbtack-extractor.ts  reviews.check.ts
+│   ├── contact-validate.check.ts  rate-limit.check.ts  seo.check.ts
+│   └── utils.ts                  # cn() class merger
+├── public/images/                # 40 job photos + cover + logo
 ├── styles/globals.css            # Tokens + shared utilities
 └── tailwind.config.ts            # navy / gold scales, fonts
 ```
@@ -216,18 +250,32 @@ voltamin/
 
 ## SEO
 
-`app/layout.tsx` emits an `Electrician` [schema.org](https://schema.org/Electrician)
-JSON-LD block covering the licence, phone, address, `areaServed` for all ten cities, and
-`aggregateRating` from `proof`. Keep it in sync when the rating or service areas change.
-Open Graph and keyword metadata are generated from `siteConfig.seo`.
+- **Canonical domain** is `https://www.voltaminelectric.com` (`business.url`); every
+  canonical, OG URL and structured-data reference derives from it.
+- `app/layout.tsx` emits a JSON-LD `@graph` with `Electrician` (licence, phone,
+  city-level address, `areaServed`), `WebSite`, and `FAQPage` (the visible FAQ list).
+  Deliberately **no `aggregateRating`**: the 5.0/106 figures are Thumbtack's, and
+  self-serving review markup on LocalBusiness entities is ineligible under Google's
+  guidelines. Ratings live in visible text, attributed to their platform.
+- `app/sitemap.ts` lists the homepage, `/services`, and the ten service pages;
+  `app/robots.ts` allows everything except `/api/` and links the sitemap.
+- Service pages get `Service` + `BreadcrumbList` + page-level `FAQPage` markup, each
+  matching visible page content (`lib/service-pages.ts`).
+- Social cards are the static `opengraph-image.png` / `twitter-image.png` (regenerate
+  with the script pattern in git history or any 1200×630 render).
+- `npm run check:site` asserts the JSON-LD shape, the no-aggregateRating policy, and
+  that every `siteConfig.services` entry has a landing page.
 
 ---
 
 ## Deployment
 
 Deploys to Vercel with no configuration beyond setting the environment variables above
-(`RESEND_API_KEY`, plus the two review keys to turn on live reviews). The home page sets
-`maxDuration = 60` so the Thumbtack scrape (about 20s) has an explicit time limit.
+(`RESEND_API_KEY`, plus the two review keys to turn on live reviews, plus the two
+Upstash variables for durable form rate limiting). The home page sets `maxDuration = 60`
+so the Thumbtack scrape (about 20s) has an explicit time limit. Security headers
+(CSP, HSTS, X-Frame-Options, Referrer-Policy, Permissions-Policy) are set in
+`next.config.js` for every route.
 
 ```bash
 npm run build && npm start   # verify locally first
